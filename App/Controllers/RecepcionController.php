@@ -5,11 +5,12 @@ class RecepcionController
 {
     public function index()
     {
-//Aqui voy
+
         if (isset($_SESSION['nivelUsuario']) && $_SESSION['nivelUsuario'] == 2) {
             require_once VIEWS_PATH . 'layout/header.php';
             include VIEWS_PATH . "recepcion/index.php";
             require_once VIEWS_PATH . 'layout/footer.php';
+            echo "Punto de control";
         } else {
             require_once VIEWS_PATH . 'layout/header.php';
             include VIEWS_PATH . 'error/index.php';
