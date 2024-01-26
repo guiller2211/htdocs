@@ -1,1 +1,30 @@
-# htdocs
+- **Contoller**
+
+/htdocs/app
+   /Controllers
+      HomeController.php
+      AdminController.php
+   /Views
+      /Home
+       index.php
+      /Admin
+       index.php
+      /Recepcion
+       index.php
+      /Tincion
+        index.php
+      /Diagnostico
+        index.php
+     /user
+        index.php
+     /contacto
+        index.php
+    /nosotros
+        index.php
+    /Router
+       router.php
+  config.php
+  Database.php
+/htdocs
+  .htaccess
+  index.php
