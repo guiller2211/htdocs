@@ -9,8 +9,6 @@ class TincionController
     public function index()
     {
 
-    //aqui estuvo moise
-
         if (isset($_SESSION['nivelUsuario']) && $_SESSION['nivelUsuario'] == 3) {
             require_once VIEWS_PATH . 'layout/header.php';
             $tincion = new TincionDaoImpl();
