@@ -68,4 +68,34 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
 
         return $result;
     }
+
+
+    
+    public function buscarId(TincionModel $tincion)
+    {
+        $id=$tincion->getId();
+      
+
+        $query = "SELECT * FROM tincion WHERE id = ?";
+    
+        $conn = $this->db->getConnection();
+        $stmt = mysqli_prepare($conn, $query);
+    
+        if (!$stmt) {
+            $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
+            return false;
+        }
+    
+        mysqli_stmt_bind_param($stmt, "s", $id);
+
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if (mysqli_num_rows($result) === 0) {
+            return false; 
+        }
+    
+        mysqli_stmt_close($stmt);
+    
+        return $result;
+    }
 }
