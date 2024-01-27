@@ -15,5 +15,6 @@ class AccesoClienteController
             include VIEWS_PATH . 'error/index.php';
             require_once VIEWS_PATH . 'layout/footer.php';
         }
+        //hasta aqui
     }
 }
