@@ -112,6 +112,10 @@
     border-style: none;
     border-radius: 5px;
 }
+.enlace-nav:focus{
+    color:var(--color-blanco);
+    text-decoration: none;
+}
 
 .enlace-nav:hover {
     text-decoration: none;
