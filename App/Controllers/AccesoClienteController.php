@@ -5,7 +5,7 @@ class AccesoClienteController
 {
     public function index()
 
-    {//andrea estuvo acá
+    {
         if (isset($_SESSION['nivelUsuario']) && $_SESSION['nivelUsuario'] == 5) {
             require_once VIEWS_PATH . 'layout/header.php';
             include VIEWS_PATH . 'accesoCliente/index.php';
