@@ -12,17 +12,18 @@
         <div id="diagnostico" style="display:none">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-center flex-column">
-                    
-                        <div class="form-group">
-                            <h3>Rut de Paciente</h3>
-                            <input type="text" class="form-control" id="buscar" placeholder="Rut">
-                            <select id="miAdmin"></select>
+                    <div class="form-group">
+                        <h3>Rut de Paciente</h3>
+                        <input type="text" class="form-control" id="buscar" placeholder="Rut">
+                        <select id="miAdmin"></select>
 
-                            <table><tr><th>rut</th></tr>
-                                
-                            </table>
-                        </div>
-                    
+                        <table>
+                            <tr>
+                                <th>rut</th>
+                            </tr>
+
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -46,17 +47,17 @@
                             <tbody>
                             <tbody>
                                 <?php foreach ($data as $row) : ?>
-                                <tr>
-                                    <td><?php echo $row['rut'];?></td>
-                                    <td><?php echo $row['nombre'];?></td>
-                                    <td><?php echo $row['apPat'];?></td>
-                                    <td><?php echo $row['apMat'];?></td>
-                                    <td><?php echo $row['telefono'];?></td>
-                                    <td><?php echo $row['centro_codigo'];?></td>
-                                    <td><?php echo $row['fecha'];?></td>
-                                    <!--<td><form  action="Recepcion"><input  id="miBotonSubmit" type="hidden" name="idExamen" value="<?php echo $row['fecha'];?>"><input type="submit" class="btn btn-primary" value="Ver Diagnostico"></form></td>-->
-                                    <td><button class="btn btn-primary btn-sm">Ver Diagnostico</button></td>
-                                </tr>
+                                    <tr>
+                                        <td><?php echo $row['rut']; ?></td>
+                                        <td><?php echo $row['nombre']; ?></td>
+                                        <td><?php echo $row['apPat']; ?></td>
+                                        <td><?php echo $row['apMat']; ?></td>
+                                        <td><?php echo $row['telefono']; ?></td>
+                                        <td><?php echo $row['centro_codigo']; ?></td>
+                                        <td><?php echo $row['fecha']; ?></td>
+                                        <td><button class="btn btn-primary btn-sm">Ver Diagnostico</button></td>
+
+                                    </tr>
                                 <?php endforeach; ?>
 
                             </tbody>
@@ -131,12 +132,7 @@
 
     </div>
 </div>
-<script>
-    
 
-
-
-</script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 <script src="../../../../public/js/recepcion.js"></script>
