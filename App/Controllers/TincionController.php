@@ -8,7 +8,6 @@ class TincionController
 {
     public function index()
     {
-
         if (isset($_SESSION['nivelUsuario']) && $_SESSION['nivelUsuario'] == 3) {
             require_once VIEWS_PATH . 'layout/header.php';
             $tincion = new TincionDaoImpl();
@@ -24,25 +23,26 @@ class TincionController
         }
     }
 
-    public function getData(){
+    public function getData()
+    {
         $tincion = new TincionDaoImpl();
         $data = $tincion->getDataTincion();
 
-        if($data instanceof mysqli_result){
+        if ($data instanceof mysqli_result) {
             $result = array();
 
-            while($row = $data->fetch_assoc()){
+            while ($row = $data->fetch_assoc()) {
                 $result[] = $row;
             }
 
             echo json_encode($result);
-
-        }else{
+        } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
 
-    public function buscarId(){
+    public function buscarId()
+    {
         $json = file_get_contents('php://input');
         $dataJson = json_decode($json, true);
 
@@ -61,16 +61,15 @@ class TincionController
 
         $result = $tincion->buscarId($tincionModel);
 
-        if($result instanceof mysqli_result){
+        if ($result instanceof mysqli_result) {
             $data = array();
 
-            while($row = $result->fetch_assoc()){
+            while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
 
             echo json_encode($data);
-
-        }else{
+        } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
