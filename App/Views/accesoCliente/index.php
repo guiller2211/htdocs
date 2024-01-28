@@ -8,75 +8,66 @@
 
 
     <div class="user-section">
-        <form class="form" method="post">
+        <form id="formBuscar" class="form" method="post">
             <img src="../../../../public/img/logo.png" width="200" height="100" alt="">
             <p style="text-align: center;">Mis Resultados</p>
             <div class="input-container">
-                <input type="text" name="ruta" placeholder="Ingrese rut" required>
+                <input type="text" id="buscar" name="datos" placeholder="Ingrese el dato a buscar" required>
                 <span>
                 </span>
             </div>
-            <div class="input-container">
-
-                <input name="clav" type="password" placeholder="Escribe el número orden" required>
-                <input type="hidden" name="sw" value="Verificar">
-            </div>
-            <button type='submit' onclick="verDiag()" name="ingresar" value="Verificar" style='display: block;padding-top: 0.75rem;padding-bottom:0.75rem;padding-left:1.25rem;padding-right:1.25rem;width: 100%;'>
-                Verificar
+            <button type='submit'  name="ingresar" class="btnBuscar">
+                Buscar
             </button>
         </form>
-
-    </div>
-
-    <div id="ver-tabla" class="container" style="display:none;">
-            <table class="table table-bordered" id="ver-tabla">
-
-                <tr class="fila-cliente">
-                <tr>
-                    <th class="titulo-columna">RUT</th>
-                    <td class="celda">7858755-9</td>
-                </tr>
-                <tr>
-                    <th class="titulo-columna">NOMBRE</th>
-                    <td class="celda">Ruth</td>
-                </tr>
-                <tr>
-                    <th class="titulo-columna">AP. PATERNO</th>
-                    <td class="celda">Salazar</td>
-                </tr>
-                <tr>
-                    <th class="titulo-columna">AP. MATERNO</th>
-                    <td class="celda">Perez</td>
-                </tr>
-                <tr>
-                    <th class="titulo-columna">TELEFONO</th>
-                    <td class="celda">+561234567889</td>
-                </tr>
-                <tr>
-                    <th class="titulo-columna">EMAIL</th>
-                    <td class="celda">prueba@mail.com</td>
-                </tr>
-                <tr>
-                    <th class="titulo-columna">DOMICILIO</th>
-                    <td class="celda">Estacion Central</td>
-                </tr>
-                <tr>
-                    <th class="titulo-columna">PROCEDENCIA</th>
-                    <td class="celda">MM</td>
-                </tr>
-            </table>
-            <br>
-            <button disabled>Ver Diagnostico</button>
-    </div>
+        
 
 </div>
 <br>
 <br>
+<div id="ver-tabla" class="container" style="display:none;">
+            <table class="table table-bordered" id="ver-tabla">
+        <div class="container">
+        <h1 class="text-center">Lista de Exámenes Médicos</h1>
+        <div class="row">
+            <div class="col-12">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Rut</th>
+                            <th>Nombre</th>
+                            <th>Paterno</th>
+                            <th>Materno</th>
+                            <th>Telefono</th>
+                            <th>Dirección</th>
+                            <th>Mail</th>
+                            <th>FechaNacimiento</th>
+                            <th>Genero</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $row) : ?>
+                            <tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo $row['rut']; ?></td>
+                                <td><?php echo $row['nombre']; ?></td>
+                                <td><?php echo $row['apPat']; ?></td>
+                                <td><?php echo $row['apMat']; ?></td>
+                                <td><?php echo $row['telefono']; ?></td>
+                                <td><?php echo $row['direccion']; ?></td>
+                                <td><?php echo $row['mail']; ?></td>
+                                <td><?php echo $row['fechaNacimiento']; ?></td>
+                                <td><?php echo $row['genero']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
 
-<script>
-    function verDiag() {
-        var elemento = document.getElementById('ver-tabla');
-        elemento.style.display = 'block';
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    }
-</script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script src="../../../../public/js/usuario.js"></script>
