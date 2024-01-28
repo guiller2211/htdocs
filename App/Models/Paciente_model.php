@@ -14,13 +14,13 @@ class PacienteModel
     private $centro_codigo;
     private $fechaExamen;
 
-
     // Getters
 
     public function getId()
     {
         return $this->id;
     }
+    
 
     public function getRut()
     {
@@ -65,7 +65,7 @@ class PacienteModel
     }
     public function getCentro_Codigo()
     {
-        return $this->centroCodigo;
+        return $this->centro_codigo;
     }
     public function getFechaExamen()
     {

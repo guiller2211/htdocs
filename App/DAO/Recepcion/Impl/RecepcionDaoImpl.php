@@ -33,25 +33,22 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
         }
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-    
+
         if (mysqli_num_rows($result) === 0) {
-            return false; 
+            return false;
         }
-    
+
         mysqli_stmt_close($stmt);
-    
+
         return $result;
     }
 
 
-    
-    public function buscarRut(RecepcionModel $recepcion)
+
+    public function buscarRut(PacienteModel $paciente)
     {
-        $rut = $recepcion->getRut();
-        error_log("La función buscarRut fue llamada con RUT: " . $rut);
-
-        $query = "SELECT * FROM pacientes WHERE rut LIKE ?";
-
+        $rut = $paciente->getRut();
+        $query = "SELECT * FROM pacientes WHERE rut LIKE '%$rut%'";
         $conn = $this->db->getConnection();
         $stmt = mysqli_prepare($conn, $query);
 
@@ -60,10 +57,9 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
             return false;
         }
 
-        mysqli_stmt_bind_param($stmt, "s", $rut);
-
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
+
         if (mysqli_num_rows($result) === 0) {
             return false;
         }

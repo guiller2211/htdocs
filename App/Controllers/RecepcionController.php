@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepcionDaoImpl.php';
+require_once __DIR__ . '/../Models/Paciente_model.php';
 
 class RecepcionController
 {
@@ -19,7 +20,8 @@ class RecepcionController
         }
     }
 
-    public function buscarRut(){
+    public function buscarRut()
+    {
         $json = file_get_contents('php://input');
 
         $dataJson = json_decode($json, true);
@@ -34,21 +36,20 @@ class RecepcionController
 
         $recepcion = new RecepcionDaoImpl();
 
-        $recepcionModel = new RecepcionModel();
+        $recepcionModel = new PacienteModel();
         $recepcionModel->setRut($rut);
 
         $result = $recepcion->buscarRut($recepcionModel);
 
-        if($result instanceof mysqli_result){
+        if ($result instanceof mysqli_result) {
             $data = array();
 
-            while($row = $result->fetch_assoc()){
+            while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
 
             echo json_encode($data);
-
-        }else{
+        } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
