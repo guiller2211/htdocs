@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $("#formRegistro").on("submit", function (event) {
-       
         event.preventDefault();
         var rut = $('#rut').val();
         var RegexFormatoRut = /^\d{7,8}-[k|K|\d]{1}$/;
@@ -9,6 +8,7 @@ $(document).ready(function () {
             alert("Ingresar rut con el formato: 11111111-1");
             return;
         }
+
 
         var formData = {
             rut: $('#rut').val(),
@@ -19,7 +19,7 @@ $(document).ready(function () {
             mail: $('#mail').val(),
             nivel: $('#nivel').val()
         };
-        
+
         fetch("admin/registroAdmin", {
             method: "POST",
             body: JSON.stringify(formData),
@@ -105,6 +105,7 @@ $(document).ready(function () {
             alert("Ingresar rut con el formato: 11111111-1");
             return;
         }
+
 
         var formData = {
             rut: $('#rut_eliminar').val(),

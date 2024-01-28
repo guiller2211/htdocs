@@ -64,6 +64,7 @@ class HomeController
 
         if ($isUserValid) {
             $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
+            $_SESSION['procedencia'] = $accessModel->getProcedencia();
             $this->checklevelPage($_SESSION['nivelUsuario']);
         } else {
             showErrorMessage("Usuario o contraseña incorrectos");

@@ -153,6 +153,7 @@
     <div class="formulario" style="display: none;" id="formularioEliminarCentros"> <!-- inicio formulario-->
         <img src="../../../public/img/hospital.png" alt="imagen" />
         <h1>Eliminar centro medico</h1>
+
         <form method="post" id="formEliminarCentro">
             <div class="username">
                 <input type="text" required placeholder="Codigo del centro médico" id="codigo_eliminar" />
