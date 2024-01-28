@@ -23,7 +23,6 @@ $("#buscar").on("change", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });
-
 function actualizarSelect(data) { // Fun actualizar el select con los datos obtenidos************
   const select = $("select");
   select.empty();  // clear antes de actualizar
@@ -36,7 +35,6 @@ function actualizarSelect(data) { // Fun actualizar el select con los datos obte
 
 
 function controlVisi1() {
-  var elemento = document.getElementById('diagnostico');
   var elemento2 = document.getElementById('ingreso');
   elemento.style.display = 'none';
   elemento2.style.display = 'block';

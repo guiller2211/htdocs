@@ -132,7 +132,6 @@
 
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 <script src="../../../../public/js/recepcion.js"></script>

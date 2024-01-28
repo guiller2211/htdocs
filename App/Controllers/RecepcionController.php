@@ -14,6 +14,7 @@ class RecepcionController
             $recep = new RecepcionDaoImpl();
             $data = $recep->getRegistroRecepcion();
 
+
             include VIEWS_PATH . "recepcion/index.php";
             require_once VIEWS_PATH . 'layout/footer.php';
         } else {
@@ -28,6 +29,7 @@ class RecepcionController
         $json = file_get_contents('php://input');
 
 
+
         $dataJson = json_decode($json, true);
 
 
@@ -40,6 +42,7 @@ class RecepcionController
         $recepcion = new RecepcionDaoImpl();
 
         $recepcionModel = new PacienteModel();
+
         $recepcionModel->setRut($rut);
 
         $result = $recepcion->buscarRut($recepcionModel);
