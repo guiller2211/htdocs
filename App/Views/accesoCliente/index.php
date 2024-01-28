@@ -1,4 +1,4 @@
-﻿<head>
+<head>
     <title>Resultados</title>
     <link rel="stylesheet" href="../../../../public/css/user.css">
 </head>
@@ -28,7 +28,7 @@
 <div id="ver-tabla" class="container" style="display:none;">
             <table class="table table-bordered" id="ver-tabla">
         <div class="container">
-        <h1 class="text-center">Lista de Exámenes Médicos</h1>
+        <h1 class="text-center">Datos Paciente</h1>
         <div class="row">
             <div class="col-12">
                 <table>
@@ -62,6 +62,43 @@
                             </tr>
                         <?php endforeach; ?>
 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<br>
+<br>
+<div id="ver-tabla" class="container" style="display:none;">
+            <table class="table table-bordered" id="ver-tabla">
+        <div class="container">
+        <h1 class="text-center">Resultado</h1>
+        <div class="row">
+            <div class="col-12">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Resultado</th>
+                            <th>Centro Medico </th>
+                            <th>codigo</th>
+                            <th>Confirmacion</th>
+                            <th>Observacion</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $row) : ?>
+                            <tr>
+                                <td><?php echo $row['descripcion']; ?></td>
+                                <td><?php echo $row['RESULTADO']; ?></td>
+                                <td><?php echo $row['nombre_centro']; ?></td>
+                                <td><?php echo $row['codigo']; ?></td>
+                                <td><?php echo $row['Confirmacion']; ?></td>
+                                <td><?php echo $row['observacion']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

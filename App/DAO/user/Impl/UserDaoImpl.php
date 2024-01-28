@@ -19,13 +19,13 @@ class UserDaoImpl implements UserDao
         $this->db = new Database();
     }
 
-    public function getDataPaciente($buscador, $procedencia)
+    public function getDataPaciente($buscador, $procedencia, $nivel)
     {
 
-        $query = "SELECT * from pacientes p  
-        inner join examenes e  on p.id  = e.paciente_id  
-        inner join perfiles as p2 on e.centro_codigo = p2.procedencia
-        where rut='$buscador' or nombre like '%'.$buscador.'%' and p2.procedencia = $procedencia' limit 1; ";
+        $query = "SELECT * FROM pacientes P  
+        INNER JOIN examenes e ON p.id = e.paciente_id  
+        INNER JOIN perfiles AS p2 ON e.centro_codigo = p2.procedencia
+        WHERE rut='$buscador' OR nombre LIKE '%$buscador%' AND p2.procedencia = '$procedencia' AND p2.nivel = '$nivel';";
 
         $conn = $this->db->getConnection();
         $stmt = mysqli_prepare($conn, $query);
@@ -45,5 +45,7 @@ class UserDaoImpl implements UserDao
             return false;
         }
         return $result;
+
     }
+
 }
