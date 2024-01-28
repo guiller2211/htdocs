@@ -59,6 +59,7 @@ $(document).ready(function () {
             return;
         }
 
+
         var formData = {
             rut: $('#rut_actualizar').val(),
             nombre: $('#nombre_actualizar').val(),
