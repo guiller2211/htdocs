@@ -6,7 +6,8 @@ class access_models
 {
     private $db;
     private $nivelUsuario;
-    
+    private $procedencia;
+
     public function __construct()
     {
         // Instancia de la clase Database
@@ -17,6 +18,10 @@ class access_models
     {
         return $this->nivelUsuario;
     }
+    public function getProcedencia()
+    {
+        return $this->procedencia;
+    }
 
     public function tableExists($tableName)
     {
@@ -24,7 +29,7 @@ class access_models
         // Verifica si la tabla existe
         $queryCheck = "SHOW TABLES LIKE '$tableName'";
         $verify = mysqli_query($this->db->getConnection(), $queryCheck);
-        
+
         return ($verify && mysqli_num_rows($verify) > 0);
     }
 
@@ -45,7 +50,7 @@ class access_models
         $claveHasheada = hash('sha256', $clave);
 
         $tableName = "Perfiles";
-        $validateQuery = "SELECT nivel FROM $tableName WHERE rut = ? and clave = ?";
+        $validateQuery = "SELECT nivel, procedencia FROM $tableName WHERE rut = ? and clave = ?";
 
         $stmt = mysqli_prepare($this->db->getConnection(), $validateQuery);
         mysqli_stmt_bind_param($stmt, 'ss', $rut, $clave);
@@ -59,9 +64,10 @@ class access_models
 
         $row = mysqli_fetch_assoc($result);
         mysqli_stmt_close($stmt);
-
-        if ($row && isset($row['nivel'])) {
+        
+        if ($row && isset($row['nivel']) && isset($row['procedencia'])) {
             $this->nivelUsuario = $row['nivel'];
+            $this->procedencia = $row['procedencia'];
             return true;
         }
 

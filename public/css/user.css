@@ -77,4 +77,27 @@ button:hover::before {
   width: 100%;
 }
 
-
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+table tr:nth-child(odd) {
+  background-color: #d9edf7;
+}
+table tr:hover {
+  background-color: #5bc0de;
+  color: #fff;
+}
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+table th {
+  background-color: #337ab7;
+  color: #fff;
+}

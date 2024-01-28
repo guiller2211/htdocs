@@ -17,7 +17,6 @@ class AccesoClienteController
             include VIEWS_PATH . 'error/index.php';
             require_once VIEWS_PATH . 'layout/footer.php';
         }
-        //hasta aqui
     }
 
     public function buscarID()
@@ -31,12 +30,13 @@ class AccesoClienteController
             return;
         }
 
-        $dato = $dataJson['dato'];
 
         $userDAO = new UserDaoImpl();
+        $dato = $dataJson['buscar'];
         $procedencia = isset($_SESSION['procedencia']) ? $_SESSION['procedencia'] : '';
+        $nivel = isset($_SESSION['nivelUsuario']) ?  $_SESSION['nivelUsuario']  : '';
 
-        $result = $userDAO->getDataPaciente($dato, $procedencia);
+        $result = $userDAO->getDataPaciente($dato, $procedencia, $nivel);
 
         if ($result instanceof mysqli_result) {
             $data = array();
@@ -46,10 +46,8 @@ class AccesoClienteController
             }
 
             echo json_encode($data);
-
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización '.$procedencia. $nivel.'']);
         }
     }
 }
-
