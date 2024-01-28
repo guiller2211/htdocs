@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../Models/Paciente_model.php';
 require_once __DIR__ . '/../../../Database.php';
 require_once __DIR__ . '/../RecepcionDao.php';
 
@@ -68,34 +69,5 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
 
         return $result;
     }
-
-
-    
-    public function buscarRut(RecepcionModel $recepcion)
-    {
-        $rut = $recepcion->getRut();
-        error_log("La función buscarRut fue llamada con RUT: " . $rut);
-
-        $query = "SELECT * FROM pacientes WHERE rut LIKE ?";
-
-        $conn = $this->db->getConnection();
-        $stmt = mysqli_prepare($conn, $query);
-
-        if (!$stmt) {
-            $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
-            return false;
-        }
-
-        mysqli_stmt_bind_param($stmt, "s", $rut);
-
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        if (mysqli_num_rows($result) === 0) {
-            return false;
-        }
-
-        mysqli_stmt_close($stmt);
-
-        return $result;
-    }
+ 
 }
