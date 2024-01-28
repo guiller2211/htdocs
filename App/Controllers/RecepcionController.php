@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../Models/Paciente_Model.php';
-require_once __DIR__ . '/../Models/Registro_Examen.php';
+require_once __DIR__ . '/../Models/Examen_model.php';
 require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepDaoImpl.php';
 class RecepcionController
 {
@@ -84,7 +84,7 @@ class RecepcionController
         $opciones = $data['opciones'];
         
         $admin= new RecepDaoImpl();
-        $ExamenModel = new Registro_Examen();
+        $ExamenModel = new ExamenModel();
         $ExamenModel->SetRut($rut);
         $ExamenModel->SetNombre($nombre);
         $ExamenModel->SetApPat($apPat);

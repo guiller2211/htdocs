@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../../Models/Paciente_Model.php';
-require_once __DIR__ . '/../../../Models/Registro_Examen.php';
+require_once __DIR__ . '/../../../Models/Examen_model.php';
 require_once __DIR__ . '/../../../Models/error_model.php';
 require_once __DIR__ . '/../../../Database.php';
 require_once __DIR__ . '/../RecepDao.php';
@@ -46,15 +46,10 @@ class RecepDaoImpl implements RecepDao
         // Ejecutar la consulta
         $result = mysqli_stmt_execute($stmt);
 
-        // if (!$result) {
-        //     // Error en la actualización, mostrar un mensaje de error
-        //     $this->error->handlerErrorBBDD($result, "Error al ejecutar la actualización");
-        //     return false;
-        // }
         return true;
     }
 
-    public function insertExamen(Registro_Examen $admin)
+    public function insertExamen(ExamenModel $admin)
     {
         $rut = $admin->getRut();
         $nombre = $admin->getNombre();
@@ -72,6 +67,11 @@ class RecepDaoImpl implements RecepDao
         mysqli_stmt_bind_param($stmtUserExists, 's', $rut);
         mysqli_stmt_execute($stmtUserExists);
         $resultUserExists = mysqli_stmt_get_result($stmtUserExists);
+        if (empty($rut)) {
+            // Manejo del error, por ejemplo, mostrar un mensaje o log
+            $this->error->handlerErrorBBDD(null, "El campo 'rut' no puede ser nulo");
+            return false;
+        }
 
         if (mysqli_num_rows($resultUserExists) === 0) {
             // The user does not exist, handle this case
@@ -90,12 +90,6 @@ class RecepDaoImpl implements RecepDao
 
         // Execute the query
         $result = mysqli_stmt_execute($stmt);
-
-        // if (!$result) {
-        //     // Error in the insertion, show an error message
-        //     $this->error->handlerErrorBBDD($result, "Error al ejecutar la inserción");
-        //     return false;
-        // }
 
         // Close the prepared statement
         mysqli_stmt_close($stmt);
