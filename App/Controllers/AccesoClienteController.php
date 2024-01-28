@@ -19,7 +19,7 @@ class AccesoClienteController
         }
     }
 
-    public function buscarIDporprocede()
+    public function buscarID()
     {
         $json = file_get_contents('php://input');
         $dataJson = json_decode($json, true);
@@ -30,11 +30,11 @@ class AccesoClienteController
             return;
         }
 
-        $dato = $dataJson['dato'];
 
         $userDAO = new UserDaoImpl();
+        $dato = $dataJson['buscar'];
         $procedencia = isset($_SESSION['procedencia']) ? $_SESSION['procedencia'] : '';
-        $nivel = isset($_SESSION['nivelUsuario'])? $_SESSION['nivelUsuario'] : '';
+        $nivel = isset($_SESSION['nivelUsuario']) ?  $_SESSION['nivelUsuario']  : '';
 
         $result = $userDAO->getDataPaciente($dato, $procedencia, $nivel);
 
@@ -46,12 +46,8 @@ class AccesoClienteController
             }
 
             echo json_encode($data);
-
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización '.$procedencia. $nivel.'']);
         }
     }
-  
-  
 }
-

@@ -22,30 +22,28 @@ class UserDaoImpl implements UserDao
     public function getDataPaciente($buscador, $procedencia, $nivel)
     {
 
-        $query = "SELECT * FROM pacientes P  
-        INNER JOIN examenes e ON p.id = e.paciente_id  
+        $query = "SELECT e.* FROM pacientes P  
+        INNER JOIN examenes e ON P.id = e.paciente_id  
         INNER JOIN perfiles AS p2 ON e.centro_codigo = p2.procedencia
-        WHERE rut='$buscador' OR nombre LIKE '%$buscador%' AND p2.procedencia = '$procedencia' AND p2.nivel = '$nivel';";
+        WHERE p2.procedencia = '$procedencia' AND p2.nivel = '$nivel' AND P.rut='$buscador' OR P.nombre LIKE '%$buscador%'";
 
         $conn = $this->db->getConnection();
         $stmt = mysqli_prepare($conn, $query);
+
         if (!$stmt) {
             $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
             return false;
         }
 
-        // Ejecutar la consulta
-        $result = mysqli_stmt_execute($stmt);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-        // Verificar si la actualización fue exitosa
-        if (!$result) {
-            // Error en la actualización, mostrar un mensaje de error
-            $this->error->handlerErrorBBDD($result, "Error al ejecutar la actualización");
-
+        if (mysqli_num_rows($result) === 0) {
             return false;
         }
+
+        mysqli_stmt_close($stmt);
+
         return $result;
-
     }
-
 }
