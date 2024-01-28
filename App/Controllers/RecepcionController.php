@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepcionDaoImpl.php';
 
 class RecepcionController
 {
@@ -8,6 +9,8 @@ class RecepcionController
 
         if (isset($_SESSION['nivelUsuario']) && $_SESSION['nivelUsuario'] == 2) {
             require_once VIEWS_PATH . 'layout/header.php';
+            $recep = new RecepcionDaoImpl();
+            $data = $recep->getRegistroRecepcion();
             include VIEWS_PATH . "recepcion/index.php";
             require_once VIEWS_PATH . 'layout/footer.php';
         } else {
@@ -17,8 +20,9 @@ class RecepcionController
         }
     }
 
-    public function buscarId(){
+    public function buscarRut(){
         $json = file_get_contents('php://input');
+
         $dataJson = json_decode($json, true);
 
 
@@ -27,14 +31,14 @@ class RecepcionController
             return;
         }
 
-        $id = $dataJson['id'];
+        $rut = $dataJson['rut'];
 
         $recepcion = new RecepcionDaoImpl();
 
         $recepcionModel = new RecepcionModel();
-        $recepciononModel->setId($id);
+        $recepcionModel->setRut($rut);
 
-        $result = $recepcion->buscarId($recepcionModel);
+        $result = $recepcion->buscarRut($recepcionModel);
 
         if($result instanceof mysqli_result){
             $data = array();

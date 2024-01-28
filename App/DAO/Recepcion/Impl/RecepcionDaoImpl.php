@@ -45,31 +45,31 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
 
 
     
-    public function buscarId(TincionModel $tincion)
+    public function buscarRut(RecepcionModel $recepcion)
     {
-        $id=$tincion->getId();
-      
+        $rut = $recepcion->getRut();
+        error_log("La función buscarRut fue llamada con RUT: " . $rut);
 
-        $query = "SELECT * FROM tincion WHERE id = ?";
-    
+        $query = "SELECT * FROM pacientes WHERE rut LIKE ?";
+
         $conn = $this->db->getConnection();
         $stmt = mysqli_prepare($conn, $query);
-    
+
         if (!$stmt) {
             $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
             return false;
         }
-    
-        mysqli_stmt_bind_param($stmt, "s", $id);
+
+        mysqli_stmt_bind_param($stmt, "s", $rut);
 
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         if (mysqli_num_rows($result) === 0) {
-            return false; 
+            return false;
         }
-    
+
         mysqli_stmt_close($stmt);
-    
+
         return $result;
     }
 }

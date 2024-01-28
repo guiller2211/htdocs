@@ -112,7 +112,7 @@
     border-style: none;
     border-radius: 5px;
 }
-.enlace-nav:focus{
+.enlace-nav:focus{ /*solucion al error del docus color azul que tenia*/
     color:var(--color-blanco);
     text-decoration: none;
 }

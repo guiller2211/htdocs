@@ -1,51 +1,36 @@
 $("#buscar").on("change", function (event) {
-    event.preventDefault();
-    var formData = {
-      id: $(this).val()
-    };
+  event.preventDefault();
+  var formData = {
+    rut: $(this).val(),
+  };
 
-    fetch("Recepcion/buscarId", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
+  fetch("Recepcion/buscarRut", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+   
+    .then((data) => {
+      console.log("data es: ",data);
+      if (data) {
+        actualizarSelect(data); // funcion actualizar select****************
+      } else {
+        alert("Error en la actualización: " + data.message);
+      }52
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-            //aqui ponen la funcion o llamada que quieren hacer  en este caso pueden usar este o modificarla 
-            actualizarTabla(data);
-        } else {
-          alert("Error en la actualización: " + data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Error en la solicitud Fetch: ", error);
-      });
-  });
-
-  function actualizarTabla(data) {
-    console.log(data);
-    const tbody = $("tbody");
-    tbody.empty();
-
-    $.each(data, function (i, row) {
-      const tr = $("<tr>");
-      tr.html(
-        `
-        <td> ${row.id} </td>
-        <td> ${row.examen_id} </td>
-        <td> ${row.confirmacion} </td>
-        <td> ${row.observacion} </td>
-        <td> ${row.fecha} </td>
-        <td> ${row.hora} </td>
-        <td>
-            <button data-id="${row.id}" type='button' class='btn btn-primary openModalBtn'>Diagnosticar</button>
-        </td>
-
-        `
-      );
-      tbody.append(tr);
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
     });
-  }
+});
+function actualizarSelect(data) { // Fun actualizar el select con los datos obtenidos************
+  const select = $("select");
+  select.empty();  // clear antes de actualizar
+
+  $.each(data, function (i, row) {
+    const option = $(`<option data-test="${row.rut}" class="obtenerID">${row.rut}</option>`);
+    select.append(option);
+  });
+}
