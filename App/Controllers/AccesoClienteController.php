@@ -37,6 +37,8 @@ class AccesoClienteController
         $procedencia = isset($_SESSION['procedencia']) ? $_SESSION['procedencia'] : '';
 
         $result = $userDAO->getDataPaciente($dato, $procedencia);
+        $result = $userDAO->getDataResultados($dato);
+        //$result = $userDAO->getDataPaciente($dato, $procedencia);
 
         if ($result instanceof mysqli_result) {
             $data = array();
