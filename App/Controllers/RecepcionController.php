@@ -3,14 +3,18 @@ session_start();
 require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepcionDaoImpl.php';
 require_once __DIR__ . '/../Models/Paciente_model.php';
 
+
 class RecepcionController
 {
     public function index()
     {
         if (isset($_SESSION['nivelUsuario']) && $_SESSION['nivelUsuario'] == 2) {
             require_once VIEWS_PATH . 'layout/header.php';
+
             $recep = new RecepcionDaoImpl();
             $data = $recep->getRegistroRecepcion();
+
+
             include VIEWS_PATH . "recepcion/index.php";
             require_once VIEWS_PATH . 'layout/footer.php';
         } else {
@@ -24,6 +28,8 @@ class RecepcionController
     {
         $json = file_get_contents('php://input');
 
+
+
         $dataJson = json_decode($json, true);
 
 
@@ -31,12 +37,12 @@ class RecepcionController
             echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
             return;
         }
-
         $rut = $dataJson['rut'];
 
         $recepcion = new RecepcionDaoImpl();
 
         $recepcionModel = new PacienteModel();
+
         $recepcionModel->setRut($rut);
 
         $result = $recepcion->buscarRut($recepcionModel);
@@ -45,11 +51,13 @@ class RecepcionController
             $data = array();
 
             while ($row = $result->fetch_assoc()) {
+
                 $data[] = $row;
             }
 
             echo json_encode($data);
         } else {
+
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }

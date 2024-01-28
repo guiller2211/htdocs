@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../Models/Paciente_model.php';
 require_once __DIR__ . '/../../../Database.php';
 require_once __DIR__ . '/../RecepcionDao.php';
 
@@ -68,4 +69,5 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
 
         return $result;
     }
+ 
 }
