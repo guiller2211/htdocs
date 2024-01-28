@@ -1,4 +1,3 @@
-
 <head>
     <link rel="stylesheet" href="../../../../public/css/diagnostico.css">
     <title>Interfaz de Diagnosticos Médicos</title>
@@ -12,12 +11,12 @@
         <div class="row">
             <!--Tamaño del Formulario -->
             <div class="col-md-5 mx-auto">
-                <form class="form-diagnostico">
+                <form action="/diagnostico/index" method="POST" class="form-diagnostico">
                     <h2 class="mb-5">Filtros de Búsqueda</h2>
 
                     <div class="col">
                         <label for="idExamen">ID de Examen:</label>
-                        <input class="mb-3" type="text" id="idExamen" name="idExamen">
+                        <input class="mb-3" type="number" id="idExamen" name="idExamen">
                     </div>
                     <div class="col">
                         <label for="nombrePaciente">Nombre del Paciente:</label>
@@ -43,6 +42,7 @@
                     <thead>
                         <tr>
                             <th>N° Examen</th>
+                            <th>Codigo estado Exámen</th>
                             <th>Rut</th>
                             <th>Nombre</th>
                             <th>Apellido Paterno</th>
@@ -53,26 +53,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $examen): ?>
+                    <?php foreach ($examenes as $examen): ?>
                     <tr>
                         <td ><?php echo $examen["id"]; ?></td>
+                        <td><?php echo $examen["diagnostico_codigo"]; ?></td>
                         <td><?php echo $examen["rut"]; ?></td>
                         <td><?php echo $examen["nombre"]; ?></td>
                         <td><?php echo $examen["apPat"]; ?></td>
                         <td><?php echo $examen["apMat"]; ?></td>
-                        <td><?php echo $examen["tincion"]; ?></td>
-                        <td><?php echo $examen["obstincion"]; ?></td>
+                        <td><?php echo $examen["confirmacion"] == 1 ? "Confirmado":"No Confirmado"; ?></td>
+                        <td><?php echo $examen["observacion"]; ?></td>
                         <td>
                                 <div class="row gap-1">
                                     <div class="col">
                                         <a href="#" onclick="openModal(<?= $examen['id'];?>)">Diagnosticar</a>
                                     </div>
-                                    <div class="col">
-                                        <a href="#" onclick="openMuestrasModal(<?= $examen['id'];?>)">Ver Muestras</a>
-                                    </div>
                                 </div>
                             </td>
-
                     </tr>
                 <?php endforeach;?>
                     </tbody>
@@ -175,5 +172,4 @@
         }
     </script>
 </body>
-
 </html>
