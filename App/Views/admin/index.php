@@ -154,11 +154,6 @@
         <img src="../../../public/img/hospital.png" alt="imagen" />
         <h1>Eliminar centro medico</h1>
 
-        <select id="miCodigo">
-
-        </select>
-
-
         <form method="post" id="formEliminarCentro">
             <div class="username">
                 <input type="text" required placeholder="Codigo del centro médico" id="codigo_eliminar" />
