@@ -1,4 +1,4 @@
-﻿<head>
+<head>
     <title>Resultados</title>
     <link rel="stylesheet" href="../../../../public/css/user.css">
 </head>
@@ -67,6 +67,7 @@
             </div>
         </div>
     </div>
+
 <br>
 <br>
 <div id="ver-tabla" class="container" style="display:none;">
@@ -84,6 +85,7 @@
                             <th>codigo</th>
                             <th>Confirmacion</th>
                             <th>Observacion</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -97,7 +99,6 @@
                                 <td><?php echo $row['observacion']; ?></td>
                             </tr>
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
             </div>
