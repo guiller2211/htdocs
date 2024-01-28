@@ -1,5 +1,3 @@
-
-
 <head>
     <link rel="stylesheet" href="../../../../public/css/recepcion.css">
     <title>Recepci&oacute;n</title>
@@ -34,45 +32,20 @@
     </div>
     <!--REGISTRO EXAMEN-->
     <div id="ingreso" class="ver-ingreso">
-    <?php include("complementos/registroExamen.php"); ?>
+        <?php include("complementos/registroExamen.php"); ?>
     </div>
 
     <!--INGRESAR PACIENTE-->
     <div id="ingresarPaciente" class="ver-ingresos formulario" style="display:none">
-    <?php include("complementos/ingresarUsuario.php"); ?>
+        <?php include("complementos/ingresarUsuario.php"); ?>
     </div>
 </div>
-
 </div>
+
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="../../../../public/js/recepcion.js"></script>
-<script>
-    function controlVisi1() {
-        var elemento = document.getElementById('ingreso');
-        var elemento2 = document.getElementById('diagnostico');
-        var elemento3 = document.getElementById('ingresarPaciente');
-        elemento.style.display = 'block';
-        elemento2.style.display = 'none';
-        elemento3.style.display = 'none';
-    }
-
-    function controlVisi2() {
-        var elemento = document.getElementById('ingreso');
-        var elemento2 = document.getElementById('diagnostico');
-        var elemento3 = document.getElementById('ingresarPaciente');
-        elemento.style.display = 'none';
-        elemento2.style.display = 'block';
-        elemento3.style.display = 'none';
-    }
-
-    function controlVisi3() {
-        var elemento = document.getElementById('ingresarPaciente');
-        var elemento2 = document.getElementById('diagnostico');
-        var elemento3 = document.getElementById('ingreso');
-        elemento.style.display = 'block';
-        elemento2.style.display = 'none';
-        elemento3.style.display = 'none';
-    }
-</script>
+<script src="../../../../public/js/recepcion.js/controlVisi1"></script>
+<script src="../../../../public/js/recepcion.js/controlVisi2"></script>
+<script src="../../../../public/js/recepcion.js/controlVisi3"></script>
 
 </html>
