@@ -133,19 +133,7 @@
 </div>
 <script>
     
-function controlVisi1() {
-    var elemento = document.getElementById('diagnostico');
-    var elemento2 = document.getElementById('ingreso');
-    elemento.style.display = 'none';
-    elemento2.style.display = 'block';
-}
 
-function controlVisi2() {
-    var elemento = document.getElementById('ingreso');
-    var elemento2 = document.getElementById('diagnostico');
-    elemento.style.display = 'none';
-    elemento2.style.display = 'block';
-}
 
 
 </script>
