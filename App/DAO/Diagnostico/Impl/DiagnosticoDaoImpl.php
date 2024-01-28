@@ -28,7 +28,6 @@ class DiagnosticoDaoImpl implements DiagnosticoDao
             $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
             return false;
         }
-    
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
     
