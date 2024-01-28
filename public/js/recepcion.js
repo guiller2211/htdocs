@@ -30,12 +30,12 @@ $(document).ready(function () {
         })
         .then(data => {
             console.log(data);
-            if (data.success !== undefined && data.success) {
+            if (data.success) {
                 alert("¡Datos agregados!");
                 // Resto del código para manejar la respuesta exitosa
                 $('#rut, #nombre, #apPat, #apMat, #telefono, #direccion, #mail, #Fnac, #genero').val('');
             } else {
-                alert("¡Datos agregados!" + data.message);
+                alert("Error" + data.message);
             }
         })
         .catch(error => {
@@ -74,12 +74,12 @@ $(document).ready(function () {
         })
         .then(data => {
             console.log(data);
-            if (data.success !== undefined && data.success) {
+            if (data.success) {
                 alert("¡Datos agregados!");
                 // Resto del código para manejar la respuesta exitosa
                 $('#rut, #nombre, #apPat, #apMat, #telefono, #direccion, #mail, #fecha, #opciones').val('');
             } else {
-                alert("¡Datos agregados!" + data.message);
+                alert("Error" + data.message);
             }
         })
         .catch(error => {
