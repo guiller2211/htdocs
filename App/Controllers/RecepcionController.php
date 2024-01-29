@@ -2,8 +2,11 @@
 session_start();
 
 require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepcionDaoImpl.php';
+require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepDaoImpl.php';
 require_once __DIR__ . '/../Models/Paciente_model.php';
 require_once __DIR__ . '/../Models/Examen_model.php';
+
+
 
 class RecepcionController
 {
