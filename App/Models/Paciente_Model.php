@@ -14,7 +14,6 @@ class PacienteModel
     private $centro_codigo;
     private $fechaExamen;
 
-
     // Getters
 
     public function getId()
