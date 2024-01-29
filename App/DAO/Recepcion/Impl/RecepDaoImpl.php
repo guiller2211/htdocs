@@ -74,24 +74,40 @@ class RecepDaoImpl implements RecepDao
     }
 
     public function insertExamen(ExamenModel $admin)
-    {
-        $paciente_id = $admin->getPacienteId();
-        $centroToma = $admin->getCentroCodigo();
-        $fecha = $admin->getFecha();
+{
+    $paciente_id = $admin->getPacienteId();
+    $centroToma = $admin->getCentroCodigo();
+    $fecha = $admin->getFecha();
 
-        $insertQuery = "INSERT INTO Examenes (paciente_id, fecha, centro_codigo) VALUES (?, ?, ?)";
-        $stmt = mysqli_prepare($this->db->getConnection(), $insertQuery);
+    $insertQuery = "INSERT INTO Examenes (paciente_id, fecha, centro_codigo) VALUES (?, ?, ?)";
+    $stmt = mysqli_prepare($this->db->getConnection(), $insertQuery);
 
-        mysqli_stmt_bind_param($stmt, 'iss', $paciente_id, $fecha, $centroToma);
-        $result = mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_param($stmt, 'iss', $paciente_id, $fecha, $centroToma);
+    $result = mysqli_stmt_execute($stmt);
 
-        if (!$result) {
-            $this->error->handlerErrorBBDD(null, "Error al insertar el registro del examen");
-            return false;
-        }
-
-        mysqli_stmt_close($stmt);
-
-        return true;
+    if (!$result) {
+        $this->error->handlerErrorBBDD(null, "Error al insertar el registro del examen");
+        return false;
     }
+
+    // Obtener el ID del examen recién insertado
+    $examen_id = mysqli_insert_id($this->db->getConnection());
+
+    // Insertar una tinción asociada al examen recién insertado
+    $insertTincionQuery = "INSERT INTO Tincion (examen_id, confirmacion) VALUES (?, '0')";
+    $stmtTincion = mysqli_prepare($this->db->getConnection(), $insertTincionQuery);
+    mysqli_stmt_bind_param($stmtTincion, 'i', $examen_id);
+    $resultTincion = mysqli_stmt_execute($stmtTincion);
+
+    if (!$resultTincion) {
+        $this->error->handlerErrorBBDD(null, "Error al insertar la tinción asociada al examen");
+        return false;
+    }
+
+    mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmtTincion);
+
+    return true;
+}
+
 }
