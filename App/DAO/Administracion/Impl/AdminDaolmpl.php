@@ -101,7 +101,6 @@ class AdminDaoImpl implements AdminDao
     {
         $tableName = "perfiles";
         $rut = $admin->getRut();
-
         if ($this->verificarRut($rut)) {
             echo json_encode(['success' => false, 'message' => 'El código ya existe en la tabla.']);
             return false;

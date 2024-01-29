@@ -1,57 +1,73 @@
 $(document).ready(function () {
-    $("#formRegistro").on("submit", function (event) {
-        event.preventDefault();
-        var rut = $('#rut').val();
-        var RegexFormatoRut = /^\d{7,8}-[k|K|\d]{1}$/;
+    $(document).ready(function () {
+        $("#formRegistro").on("submit", function (event) {
+            event.preventDefault();
+            var rut = $('#rut').val();
+            validar = validaRut(rut);
+            var RegexFormatoRut = /^\d{7,8}-[k|K|\d]{1}$/;
 
-        if (!RegexFormatoRut.test(rut)) {
-            alert("Ingresar rut con el formato: 11111111-1");
-            return;
-        }
+            if (!RegexFormatoRut.test(rut)) {
+                alert("Ingresar rut con el formato: 11111111-1");
+                return;
+            }
+            if (validar) {
+                var formData = {
+                    rut: $('#rut').val(),
+                    nombre: $('#nombre').val(),
+                    apPat: $('#apPat').val(),
+                    apMat: $('#apMat').val(),
+                    procedencia: $('#procedencia').val(),
+                    mail: $('#mail').val(),
+                    nivel: $('#nivel').val()
+                };
+
+                fetch("admin/registroAdmin", {
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Error en la solicitud Fetch");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success !== undefined && data.success) {
+                            alert("¡Actualización exitosa!");
+                            $('#rut').val('');
+                            $('#nombre').val('');
+                            $('#apPat').val('');
+                            $('#apMat').val('');
+                            $('#procedencia').val('');
+                            $('#mail').val('');
+                            $('#nivel').val('');
+                        }
+                        else if (data.message === 'El código ya existe en la tabla.') {
+                            alert("Error en la actualización: " + data.message);
+                        }
+                        else {
+                            alert("Error en la actualización: " + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error en la solicitud Fetch: ", error);
+                    });
+            }
+            else {
+                alert("El Rut ingresado no es valido")
+            }
 
 
-        var formData = {
-            rut: $('#rut').val(),
-            nombre: $('#nombre').val(),
-            apPat: $('#apPat').val(),
-            apMat: $('#apMat').val(),
-            procedencia: $('#procedencia').val(),
-            mail: $('#mail').val(),
-            nivel: $('#nivel').val()
-        };
-
-        fetch("admin/registroAdmin", {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success !== undefined && data.success) {
-                    alert("¡Actualización exitosa!");
-                    $('#rut').val(''),
-                        $('#nombre').val(''),
-                        $('#apPat').val(''),
-                        $('#apMat').val(''),
-                        $('#procedencia').val(''),
-                        $('#mail').val(''),
-                        $('#nivel').val('')
-
-
-                } else {
-                    alert("Error en la actualización: " + data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Error en la solicitud Fetch: ", error);
-            });
+        });
     });
+
 
     $("#formActualizar").on("submit", function (event) {
         event.preventDefault();
-        var rut = $('#rut').val();
+        var rut = $('#rut_actualizar').val();
         var RegexFormatoRut = /^\d{7,8}-[k|K|\d]{1}$/;
 
         if (!RegexFormatoRut.test(rut)) {
@@ -99,7 +115,7 @@ $(document).ready(function () {
 
     $("#formEliminar").on("submit", function (event) {
         event.preventDefault();
-        var rut = $('#rut').val();
+        var rut = $('#rut_eliminar').val();
         var RegexFormatoRut = /^\d{7,8}-[k|K|\d]{1}$/;
 
         if (!RegexFormatoRut.test(rut)) {
@@ -395,7 +411,7 @@ $(document).ready(function () {
                         '   color:  #fff;' +
                         '}' +
                         '</style>');
-                        
+
                     $('head').append(style);
                     document.getElementById("resultadoBusqueda").style.display = 'block';
                 } else {
@@ -485,4 +501,73 @@ $(document).ready(function () {
         link.click();
         document.body.removeChild(link);
     }
+
+    function validaRut(rut) {
+        var _rut = rut.toUpperCase();
+        var _multiplicacion = 0;
+        var _suma = 0;
+        var _arrayVerificador = [3, 2, 7, 6, 5, 4, 3, 2, 11];
+        var _estado = 0;
+
+        if (_rut.length < 10) {
+            alert('El largo del rut no debe ser menor a 10');
+            return false;
+        }
+
+        if (_rut.length > 10) {
+            alert('El largo del rut no debe ser mayor a 10');
+            return false;
+        }
+
+        if (_rut[8] !== '-') {
+            alert('Falta el guion antes del número verificador');
+            return false;
+        }
+
+        let splitRut = _rut.split("-");
+
+        if (!/^\d+$/.test(splitRut[0])) {
+            alert('No debe ingresar letras antes del número verificador');
+            return false;
+        }
+
+        if (!/^\d+$/.test(splitRut[1]) && splitRut[1] !== 'K') {
+            alert('El número verificador no es válido');
+            return false;
+        }
+
+        for (var index in splitRut[0]) {
+            _multiplicacion = parseInt(splitRut[0][index]) * _arrayVerificador[index];
+            _suma += _multiplicacion;
+        }
+
+        let _digitoVerificador = (_suma % _arrayVerificador[8] === 0) ? 0 : _arrayVerificador[8] - (_suma % _arrayVerificador[8]);
+
+        switch (splitRut[1]) {
+            case 'K':
+                switch (_digitoVerificador) {
+                    case 10:
+                        _estado = 1;
+                        break;
+                    case 11:
+                        _estado = 2;
+                        break;
+                    default:
+                        _estado = 2;
+                }
+                break;
+            default:
+                if (_digitoVerificador === 11 || _digitoVerificador == splitRut[1]) {
+                    _estado = 1;
+                } else if (_digitoVerificador === 10) {
+                    _estado = 2;
+                } else if (_digitoVerificador === 11) {
+                    _estado = 2;
+                } else {
+                    _estado = 2;
+                }
+        }
+        return _estado === 1;
+    }
+
 });
