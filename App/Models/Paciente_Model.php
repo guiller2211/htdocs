@@ -14,13 +14,13 @@ class PacienteModel
     private $centro_codigo;
     private $fechaExamen;
 
+
     // Getters
 
     public function getId()
     {
         return $this->id;
     }
-    
 
     public function getRut()
     {
@@ -73,9 +73,41 @@ class PacienteModel
     }
 
     //setters 
-    public function setRut($rut)
+
+    public function SetRut($rut)
     {
         $this->rut = $rut;
     }
+    public function SetNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+    public function SetApPat($apPat)
+    {
+        $this->apPat = $apPat;
+    }
+    public function SetApMat($apMat)
+    {
+        $this->apMat = $apMat;
+    }
+    public function SetTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
+    public function SetDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    }
+    public function SetMail($mail)
+    {
+        $this->mail = $mail;
+    }
+    public function SetFechaNacimiento($fechaNacimiento)
+    {
+        $this->fechaNacimiento = $fechaNacimiento;
+    }
+    public function SetGenero($genero)
+    {
+        $this->genero = $genero;
+    }
 }
-?>

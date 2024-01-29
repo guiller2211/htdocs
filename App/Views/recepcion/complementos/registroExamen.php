@@ -1,9 +1,3 @@
-<form method="post" action="#">
-    <input type="text" name="rut">
-    <input type="hidden" name="op" value="Buscar">
-    <input type="submit" value="buscar">
-</form>
-
 <form method="POST" id="formExamen" class="formulario" >
     <h3>Registro de examen</h3>
     <div class="contenedor-divi">
