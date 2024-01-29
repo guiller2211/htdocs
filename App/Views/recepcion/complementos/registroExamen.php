@@ -26,7 +26,7 @@
 
             <div class="campo">
                 <label class="label-form">RUT</label>
-                <input class="input-form" type="text" name="rut" id="rut" required>
+                <select class="input-form" name="rut" id="rut"></select>
             </div>
             <div class="campo">
                 <label class="label-form">Apellido Paterno</label>

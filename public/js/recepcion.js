@@ -1,3 +1,4 @@
+getUsuarios();
 //PACIENTE
 $("#formRegistro").on("submit", function (event) {
   event.preventDefault();
@@ -28,8 +29,7 @@ $("#formRegistro").on("submit", function (event) {
       return response.text();
     })
     .then((data) => {
-      console.log(data);
-      if (data.success) {
+      if (!data.success) {
         alert("¡Datos agregados!");
         // Resto del código para manejar la respuesta exitosa
         $(
@@ -47,20 +47,13 @@ $("#formRegistro").on("submit", function (event) {
 //EXAMEN
 $("#formExamen").on("submit", function (event) {
   event.preventDefault();
-
   var formData = {
-    rut: $("#rut").val(),
-    nombre: $("#nombre").val(),
-    apPat: $("#apPat").val(),
-    apMat: $("#apMat").val(),
-    telefono: $("#telefono").val(),
-    direccion: $("#direccion").val(),
-    mail: $("#mail").val(),
+    paciente_id: $("#rut").find(":selected").data("test"),
     fecha: $("#fecha").val(),
-    opciones: $("#opciones").val(),
+    centroCodigo: $("#opciones").val(),
   };
 
-  fetch("Recepcion/insertExamen", {
+  fetch("recepcion/insertExamen", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -74,8 +67,7 @@ $("#formExamen").on("submit", function (event) {
       return response.text();
     })
     .then((data) => {
-      console.log(data);
-      if (data.success) {
+      if (!data.success) {
         alert("¡Datos agregados!");
         // Resto del código para manejar la respuesta exitosa
         $(
@@ -89,6 +81,7 @@ $("#formExamen").on("submit", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });
+
 $("#buscar").on("change", function (event) {
   event.preventDefault();
   var formData = {
@@ -127,29 +120,87 @@ function actualizarSelect(data) {
     select.append(option);
   });
 }
+
+function getUsuarios() {
+  fetch("recepcion/getData")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        const select = $("#rut");
+        select.empty(); // clear antes de actualizar
+        const optionSelect = $(
+          `<option class="obtenerID">Seleccione Paciente</option>`
+        );
+        select.append(optionSelect);
+        $.each(data, function (i, row) {
+          const option = $(
+            `<option data-test="${row.id}" class="obtenerID">${row.rut}</option>`
+          );
+          select.append(option);
+        });
+      } else {
+        alert("Error en la actualización: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+}
+
+$("#rut").on("change", function (event) {
+  event.preventDefault();
+  var formData = {
+    rut: $(this).val(),
+  };
+
+  fetch("recepcion/buscarRut", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        $("#nombre").val(data[0].nombre);
+        $("#apPat").val(data[0].apPat);
+        $("#apMat").val(data[0].apMat);
+        $("#telefono").val(data[0].telefono);
+        $("#direccion").val(data[0].direccion);
+        $("#mail").val(data[0].mail);
+      } else {
+        alert("Error en la actualización: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
+
 function controlVisi1() {
-  var elemento = document.getElementById('ingreso');
-  var elemento2 = document.getElementById('diagnostico');
-  var elemento3 = document.getElementById('ingresarPaciente');
-  elemento.style.display = 'block';
-  elemento2.style.display = 'none';
-  elemento3.style.display = 'none';
+  var elemento = document.getElementById("ingreso");
+  var elemento2 = document.getElementById("diagnostico");
+  var elemento3 = document.getElementById("ingresarPaciente");
+  elemento.style.display = "block";
+  elemento2.style.display = "none";
+  elemento3.style.display = "none";
 }
 
 function controlVisi2() {
-  var elemento = document.getElementById('ingreso');
-  var elemento2 = document.getElementById('diagnostico');
-  var elemento3 = document.getElementById('ingresarPaciente');
-  elemento.style.display = 'none';
-  elemento2.style.display = 'block';
-  elemento3.style.display = 'none';
+  var elemento = document.getElementById("ingreso");
+  var elemento2 = document.getElementById("diagnostico");
+  var elemento3 = document.getElementById("ingresarPaciente");
+  elemento.style.display = "none";
+  elemento2.style.display = "block";
+  elemento3.style.display = "none";
 }
 
 function controlVisi3() {
-  var elemento = document.getElementById('ingresarPaciente');
-  var elemento2 = document.getElementById('diagnostico');
-  var elemento3 = document.getElementById('ingreso');
-  elemento.style.display = 'block';
-  elemento2.style.display = 'none';
-  elemento3.style.display = 'none';
+  var elemento = document.getElementById("ingresarPaciente");
+  var elemento2 = document.getElementById("diagnostico");
+  var elemento3 = document.getElementById("ingreso");
+  elemento.style.display = "block";
+  elemento2.style.display = "none";
+  elemento3.style.display = "none";
 }

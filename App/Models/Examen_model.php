@@ -17,7 +17,7 @@ class ExamenModel
     private $rut;
     private $apPat;
     private $telefono;
-    private $opciones;
+    private $centroToma;
     private $direccion;
 
 
@@ -135,9 +135,9 @@ class ExamenModel
     }
 
 
-    public function getOpciones()
+    public function getCentroToma()
     {
-        return $this->opciones;
+        return $this->centroToma;
     }
 
 
@@ -173,9 +173,9 @@ class ExamenModel
     {
         $this->fecha = $fecha;
     }
-    public function SetOpciones($opciones)
+    public function SetCentroToma($centroToma)
     {
-        $this->opciones = $opciones;
+        $this->centroToma = $centroToma;
     }
 
 }

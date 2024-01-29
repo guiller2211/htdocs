@@ -64,9 +64,6 @@
             </div>
         </div>
 
-
-     
-
         <!--REGISTRO EXAMEN-->
         <div id="ingreso" class="ver-ingreso">
             <?php include("complementos/registroExamen.php"); ?>
