@@ -41,28 +41,6 @@ class InsertDataBase
         return true;
     }
 
-    public function createTableRegister()
-    {
-
-        $tableName = "registroExamen";
-        $buildTable = "CREATE TABLE IF NOT EXISTS $tableName(
-            id int auto_increment primary key,
-            rut varchar(10) not null,
-            nombre varchar(50) not null,
-            apPat varchar(50)not null,
-            apMat varchar(50)not null,
-            telefono varchar(20)not null,
-            mail varchar(50)not null,
-            centroToma varchar(5)not null,
-            fecha varchar(20)not null,
-            direccion varchar(50)not null
-        )";
-
-        $Create = mysqli_query($this->db->getConnection(), $buildTable);
-        $this->error->handlerErrorBBDD($Create, $tableName);
-
-        return true;
-    }
 
     public function createTableCentroDeTomas()
     {

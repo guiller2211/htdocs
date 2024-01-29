@@ -81,6 +81,5 @@ class Database
         $insertDataBase->createTablePacientes();
         $insertDataBase->createTableExamen();
         $insertDataBase->createTableTincion();
-        $insertDataBase->createTableRegister();
     }
 }

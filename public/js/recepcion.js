@@ -1,3 +1,4 @@
+getUsuarios();
 //PACIENTE
 $("#formRegistro").on("submit", function (event) {
   event.preventDefault();
@@ -46,17 +47,10 @@ $("#formRegistro").on("submit", function (event) {
 //EXAMEN
 $("#formExamen").on("submit", function (event) {
   event.preventDefault();
-
   var formData = {
-    rut: $("#rut").val(),
-    nombre: $("#nombre").val(),
-    apPat: $("#apPat").val(),
-    apMat: $("#apMat").val(),
-    telefono: $("#telefono").val(),
-    direccion: $("#direccion").val(),
-    mail: $("#mail").val(),
+    paciente_id: $("#rut").find(":selected").data("test"),
     fecha: $("#fecha").val(),
-    opciones: $("#opciones").val(),
+    centroCodigo: $("#opciones").val(),
   };
 
   fetch("recepcion/insertExamen", {
@@ -126,6 +120,63 @@ function actualizarSelect(data) {
     select.append(option);
   });
 }
+
+function getUsuarios() {
+  fetch("recepcion/getData")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        const select = $("#rut");
+        select.empty(); // clear antes de actualizar
+        const optionSelect = $(
+          `<option class="obtenerID">Seleccione Paciente</option>`
+        );
+        select.append(optionSelect);
+        $.each(data, function (i, row) {
+          const option = $(
+            `<option data-test="${row.id}" class="obtenerID">${row.rut}</option>`
+          );
+          select.append(option);
+        });
+      } else {
+        alert("Error en la actualización: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+}
+
+$("#rut").on("change", function (event) {
+  event.preventDefault();
+  var formData = {
+    rut: $(this).val(),
+  };
+
+  fetch("recepcion/buscarRut", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        $("#nombre").val(data[0].nombre);
+        $("#apPat").val(data[0].apPat);
+        $("#apMat").val(data[0].apMat);
+        $("#telefono").val(data[0].telefono);
+        $("#direccion").val(data[0].direccion);
+        $("#mail").val(data[0].mail);
+      } else {
+        alert("Error en la actualización: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
 
 function controlVisi1() {
   var elemento = document.getElementById("ingreso");

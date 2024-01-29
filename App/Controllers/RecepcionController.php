@@ -28,6 +28,24 @@ class RecepcionController
         }
     }
 
+    public function getData()
+    {
+        $admin= new RecepDaoImpl();
+        $data = $admin->getUsuarios();
+
+        if ($data instanceof mysqli_result) {
+            $result = array();
+
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
+
     public function insertUser()
     {
         $json = file_get_contents('php://input');
@@ -81,30 +99,18 @@ class RecepcionController
             echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
             return;
         }
-
-        $rut=$data['rut']; 
-        $nombre = $data['nombre'];
-        $apPat=$data['apPat'];
-        $apMat=$data['apMat'];
-        $telefono = $data['telefono'];
-        $direccion = $data['direccion'];
-        $mail=$data['mail'];
-        $fecha = $data['fecha'];
-        $opciones = $data['opciones'];
         
-        $admin= new RecepDaoImpl();
+        $paciente_id = $data['paciente_id']; 
+        $fecha = $data['fecha']; 
+        $centro_codigo = $data['centroCodigo']; 
+
+        $recepcionDao= new RecepDaoImpl();
         $ExamenModel = new ExamenModel();
-        $ExamenModel->SetRut($rut);
-        $ExamenModel->SetNombre($nombre);
-        $ExamenModel->SetApPat($apPat);
-        $ExamenModel->SetApMat($apMat);
-        $ExamenModel->SetTelefono($telefono);
-        $ExamenModel->SetDireccion($direccion);
-        $ExamenModel->SetMail($mail);
+        $ExamenModel->setPacienteId($paciente_id);
+        $ExamenModel->setCentroCodigo($centro_codigo);
         $ExamenModel->SetFecha($fecha);
-        $ExamenModel->SetCentroToma($opciones);
       
-        $result = $admin->insertExamen($ExamenModel);
+        $result = $recepcionDao->insertExamen($ExamenModel);
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
@@ -117,10 +123,7 @@ class RecepcionController
     {
         $json = file_get_contents('php://input');
 
-
-
         $dataJson = json_decode($json, true);
-
 
         if ($dataJson === null && json_last_error() !== JSON_ERROR_NONE) {
             echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
