@@ -6,4 +6,3 @@ function mostrarFormulario(formularioId) {
     var formulario = document.getElementById(formularioId);
     formulario.style.display = 'inline-block';
 }
-
