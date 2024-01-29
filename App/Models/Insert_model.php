@@ -54,8 +54,8 @@ class InsertDataBase
             telefono varchar(20)not null,
             mail varchar(50)not null,
             centroToma varchar(5)not null,
+            fecha varchar(20)not null,
             direccion varchar(50)not null
-           
         )";
 
         $Create = mysqli_query($this->db->getConnection(), $buildTable);

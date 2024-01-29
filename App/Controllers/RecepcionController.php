@@ -65,11 +65,10 @@ class RecepcionController
         $result = $admin->insertUser($PacienteModel);
 
         if ($result) {
-            header('Content-Type: application/json');
-            echo json_encode(['success' => false, 'message' => 'Actualización exitosa']);
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
             
         } else {
-            echo json_encode(['success' => true, 'message' => 'Error en la actualización']);
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
 
@@ -103,17 +102,14 @@ class RecepcionController
         $ExamenModel->SetDireccion($direccion);
         $ExamenModel->SetMail($mail);
         $ExamenModel->SetFecha($fecha);
-        $ExamenModel->SetOpciones($opciones);
+        $ExamenModel->SetCentroToma($opciones);
       
         $result = $admin->insertExamen($ExamenModel);
 
-        if (!$result) {
-            header('Content-Type: application/json');
-            echo json_encode(['success' => true, 'message' => 'Error en la actualización']);
-            
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Actualización exitosa']);
-
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
   

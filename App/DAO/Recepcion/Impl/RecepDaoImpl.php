@@ -59,42 +59,39 @@ class RecepDaoImpl implements RecepDao
         $direccion = $admin->getDireccion();
         $mail = $admin->getMail();
         $fecha = $admin->getFecha();
-        $opciones = $admin->getOpciones();
-
-        // Check if the user with the specified RUT exists in the 'pacientes' table
+        $centroToma = $admin->getCentroToma();
+    
+        if (empty($rut)) {
+            $this->error->handlerErrorBBDD(null, "El campo 'rut' no puede ser nulo");
+            return false;
+        }
+    
         $userExistQuery = "SELECT * FROM pacientes WHERE rut = ?";
         $stmtUserExists = mysqli_prepare($this->db->getConnection(), $userExistQuery);
         mysqli_stmt_bind_param($stmtUserExists, 's', $rut);
         mysqli_stmt_execute($stmtUserExists);
         $resultUserExists = mysqli_stmt_get_result($stmtUserExists);
-        if (empty($rut)) {
-            // Manejo del error, por ejemplo, mostrar un mensaje o log
-            $this->error->handlerErrorBBDD(null, "El campo 'rut' no puede ser nulo");
-            return false;
-        }
-
+    
         if (mysqli_num_rows($resultUserExists) === 0) {
-            // The user does not exist, handle this case
-            echo "<script>alert('El usuario no existe');</script>";
+            $this->error->handlerErrorBBDD(null, "El usuario no existe");
             return false;
         }
-
-        // The user exists, proceed with the exam record insertion
-        $validateQuery = "INSERT INTO registroexamen(rut, nombre, apPat, apMat, telefono, mail, centroToma, fecha, direccion) 
-            values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        $stmt = mysqli_prepare($this->db->getConnection(), $validateQuery);
-
-        // Bind parameters to the prepared statement
-        mysqli_stmt_bind_param($stmt, 'sssssssss', $rut, $nombre, $apPat, $apMat, $telefono, $mail, $opciones, $fecha, $direccion);
-
-        // Execute the query
+    
+        $insertQuery = "INSERT INTO registroexamen (rut, nombre, apPat, apMat, telefono, mail, centroToma, fecha, direccion) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($this->db->getConnection(), $insertQuery);
+    
+        mysqli_stmt_bind_param($stmt, 'sssssssss', $rut, $nombre, $apPat, $apMat, $telefono, $mail, $centroToma, $fecha, $direccion);
         $result = mysqli_stmt_execute($stmt);
-
-        // Close the prepared statement
+    
+        if (!$result) {
+            $this->error->handlerErrorBBDD(null, "Error al insertar el registro del examen");
+            return false;
+        }
+    
         mysqli_stmt_close($stmt);
-
+    
         return true;
     }
-
+    
 }

@@ -1,14 +1,10 @@
 $(document).ready(function () {
   var selectedId;
-
-  getSelect();
-
   $("tbody").on("click", ".openModalBtn", function () {
     $("#myModal").css("display", "block");
     selectedId = $(this).data("id");
     $("#confirmacion").prop("checked", false);
-    $("#observacion").val();
-    console.log("ID seleccionado:", selectedId);
+    $("#observacion").val("");
   });
 
   $(".close").click(function () {
@@ -41,11 +37,17 @@ $(document).ready(function () {
       .then((data) => {
         if (data.success) {
           fetch("tincion/getData")
-            .then((response) => response.json())
+            .then((response) => {
+              response.json();
+              if (!response.json.success) {
+                $("#myModal").css("display", "none");
+                const tbody = $("tbody");
+                tbody.empty();
+              }
+            })
             .then((data) => {
               if (data) {
                 actualizarTabla(data);
-
                 $("#myModal").css("display", "none");
               } else {
                 alert("Error en la actualización: " + data.message);
@@ -59,6 +61,8 @@ $(document).ready(function () {
         }
       })
       .catch((error) => {
+        const tbody = $("tbody");
+        tbody.empty();
         console.error("Error en la solicitud Fetch: ", error);
       });
   });
