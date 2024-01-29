@@ -235,231 +235,148 @@ $(document).ready(function () {
       });
   });
 
-  document
-    .getElementById("formBusqueda")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
+  $("#formBusqueda").on("submit", function (event) {
+    event.preventDefault();
 
-      var formData = {
-        fechaInicio: document.getElementById("fechaInicio").value,
-        fechaFin: document.getElementById("fechaFin").value,
-      };
-      console.log(formData);
-      fetch("/admin/buscarCentros/", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    var formData = {
+      fechaInicio: $("#fechaInicio").val(),
+      fechaFin: $("#fechaFin").val(),
+    };
+    console.log(formData);
+    fetch("/admin/buscarCentros/", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success !== undefined && data.success) {
+          getTabla(data);
+        } else {
+          alert("Error en la búsqueda: " + data.message);
+        }
       })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success !== undefined && data.success) {
-            document.getElementById("resultadoBusqueda").innerHTML = "";
+      .catch((error) => {
+        console.error("Error en la solicitud Fetch: ", error);
+      });
+  });
 
-            var tableHTML =
-              '<table border="1" id="miTabla">' +
-              "<tr>" +
-              "<th>id</th>" +
-              "<th>Paciente_id</th>" +
-              "<th>Diagnostico_codigo</th>" +
-              "<th>Fecha</th>" +
-              "<th>Centro_codigo</th>" +
-              "<th>Resultado</th>" +
-              "<th>Fecha_entrega</th>" +
-              "</tr>";
-
-            data.resultados.forEach(function (resultado) {
-              tableHTML +=
-                "<tr>" +
-                "<td>" +
-                resultado.id +
-                "</td>" +
-                "<td>" +
-                resultado.paciente_id +
-                "</td>" +
-                "<td>" +
-                resultado.diagnostico_codigo +
-                "</td>" +
-                "<td>" +
-                resultado.fecha +
-                "</td>" +
-                "<td>" +
-                resultado.centro_codigo +
-                "</td>" +
-                "<td>" +
-                resultado.resultado +
-                "</td>" +
-                "<td>" +
-                resultado.fecha_entrega +
-                "</td>" +
-                "</tr>";
-            });
-
-            tableHTML += '</table">';
-
-            document.getElementById("resultadoBusqueda").innerHTML = tableHTML;
-            var style = $(
-              "<style>" +
-                "table {" +
-                "   width: 90%;" +
-                "   border-collapse: collapse;" +
-                "   margin: 20px auto;" +
-                "}" +
-                "table tr:nth-child(even) {" +
-                "   background-color: #f2f2f2;" +
-                "}" +
-                "table tr:nth-child(odd) {" +
-                "   background-color: #d9edf7;" +
-                "}" +
-                "table tr:hover {" +
-                "   background-color: #5bc0de;" +
-                "   color: #fff;" +
-                "}" +
-                "table td, table th {" +
-                "   border: 1px solid #ddd;" +
-                "   padding: 8px;" +
-                "}" +
-                "table th {" +
-                "   background-color: #337ab7;" +
-                "   color:  #fff;" +
-                "}" +
-                "</style>"
-            );
-
-            $("head").append(style);
-            document.getElementById("resultadoBusqueda").style.display =
-              "block";
-          } else {
-            alert("Error en la búsqueda: " + data.message);
-          }
-        })
-        .catch((error) => {
-          console.error("Error en la solicitud Fetch: ", error);
-        });
-    });
-
-  var navLinks = document.getElementsByClassName("nav-link");
+  var navLinks = $("nav-link");
 
   for (var i = 0; i < navLinks.length; i++) {
-    navLinks[i].addEventListener("click", function (event) {
-      document.getElementById("resultadoBusqueda").style.display = "none";
+    navLinks[i].on("click", function (event) {
+      $("#resultadoBusqueda").style.display = "none";
     });
   }
 
   // FRECUENCIA DE CENTRO DE TOMAS
 
-  document
-    .getElementById("formFrecuencia")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
+  $("#formFrecuencia").on("submit", function (event) {
+    event.preventDefault();
 
-      var formData = {
-        codigo: document.getElementById("codigo_busqueda").value,
-      };
+    var formData = {
+      codigo: $("#codigo_busqueda").val(),
+    };
 
-      console.log(formData);
-      fetch("/admin/buscarFrecuenciaCentros/", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    console.log(formData);
+    fetch("/admin/buscarFrecuenciaCentros/", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success !== undefined && data.success) {
+          getTabla(data);
+        } else {
+          alert("Error en la búsqueda: " + data.message);
+        }
       })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success !== undefined && data.success) {
-            document.getElementById("resultadoBusqueda").innerHTML = "";
+      .catch((error) => {
+        console.error("Error en la solicitud Fetch: ", error);
+      });
+  });
 
-            var tableHTML =
-              '<table border="1" id="miTablaFrecuencia">' +
-              "<tr>" +
-              "<th>id</th>" +
-              "<th>Paciente_id</th>" +
-              "<th>Diagnostico_codigo</th>" +
-              "<th>Fecha</th>" +
-              "<th>Centro_codigo</th>" +
-              "<th>Resultado</th>" +
-              "<th>Fecha_entrega</th>" +
-              "</tr>";
+  function getTabla(data) {
+    $("#resultadoBusqueda").empty();
 
-            data.resultados.forEach(function (resultado) {
-              tableHTML +=
-                "<tr>" +
-                "<td>" +
-                resultado.id +
-                "</td>" +
-                "<td>" +
-                resultado.paciente_id +
-                "</td>" +
-                "<td>" +
-                resultado.diagnostico_codigo +
-                "</td>" +
-                "<td>" +
-                resultado.fecha +
-                "</td>" +
-                "<td>" +
-                resultado.centro_codigo +
-                "</td>" +
-                "<td>" +
-                resultado.resultado +
-                "</td>" +
-                "<td>" +
-                resultado.fecha_entrega +
-                "</td>" +
-                "</tr>";
-            });
+    var tableHTML =
+      '<table border="1" id="miTabla">' +
+      "<tr>" +
+      "<th>id</th>" +
+      "<th>Paciente_id</th>" +
+      "<th>Diagnostico_codigo</th>" +
+      "<th>Fecha</th>" +
+      "<th>Centro_codigo</th>" +
+      "<th>Resultado</th>" +
+      "<th>Fecha_entrega</th>" +
+      "</tr>";
 
-            tableHTML += '</table">';
-
-            document.getElementById("resultadoBusqueda").innerHTML = tableHTML;
-
-            var style = $(
-              "<style>" +
-                "table {" +
-                "   width: 90%;" +
-                "   border-collapse: collapse;" +
-                "   margin: 20px auto;" +
-                "}" +
-                "table tr:nth-child(even) {" +
-                "   background-color: #f2f2f2;" +
-                "}" +
-                "table tr:nth-child(odd) {" +
-                "   background-color: #d9edf7;" +
-                "}" +
-                "table tr:hover {" +
-                "   background-color: #5bc0de;" +
-                "   color: #fff;" +
-                "}" +
-                "table td, table th {" +
-                "   border: 1px solid #ddd;" +
-                "   padding: 8px;" +
-                "}" +
-                "table th {" +
-                "   background-color: #337ab7;" +
-                "   color:  #fff;" +
-                "}" +
-                "</style>"
-            );
-
-            $("head").append(style);
-            document.getElementById("resultadoBusqueda").style.display =
-              "block";
-          } else {
-            alert("Error en la búsqueda: " + data.message);
-          }
-        })
-        .catch((error) => {
-          console.error("Error en la solicitud Fetch: ", error);
-        });
+    data.resultados.forEach(function (resultado) {
+      tableHTML +=
+        "<tr>" +
+        "<td>" +
+        resultado.id +
+        "</td>" +
+        "<td>" +
+        resultado.paciente_id +
+        "</td>" +
+        "<td>" +
+        resultado.diagnostico_codigo +
+        "</td>" +
+        "<td>" +
+        resultado.fecha +
+        "</td>" +
+        "<td>" +
+        resultado.centro_codigo +
+        "</td>" +
+        "<td>" +
+        resultado.resultado +
+        "</td>" +
+        "<td>" +
+        resultado.fecha_entrega +
+        "</td>" +
+        "</tr>";
     });
 
-  var navLinks = document.getElementsByClassName("nav-link");
+    tableHTML += '</table">';
 
-  for (var i = 0; i < navLinks.length; i++) {
-    navLinks[i].addEventListener("click", function (event) {
-      document.getElementById("resultadoBusqueda").style.display = "none";
-    });
+    $("#resultadoBusqueda").append(tableHTML);
+
+    var style = $(
+      "<style>" +
+        "table {" +
+        "   width: 90%;" +
+        "   border-collapse: collapse;" +
+        "   margin: 20px auto;" +
+        "}" +
+        "table tr:nth-child(even) {" +
+        "   background-color: #f2f2f2;" +
+        "}" +
+        "table tr:nth-child(odd) {" +
+        "   background-color: #d9edf7;" +
+        "}" +
+        "table tr:hover {" +
+        "   background-color: #5bc0de;" +
+        "   color: #fff;" +
+        "}" +
+        "table td, table th {" +
+        "   border: 1px solid #ddd;" +
+        "   padding: 8px;" +
+        "}" +
+        "table th {" +
+        "   background-color: #337ab7;" +
+        "   color:  #fff;" +
+        "}" +
+        "</style>"
+    );
+
+    $("head").append(style);
+    document.getElementById("resultadoBusqueda").style.display = "block";
   }
 
   //EXPORTAR ARCHIVO
