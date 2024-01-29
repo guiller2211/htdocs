@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../Models/Paciente_Model.php';
+require_once __DIR__ . '/../../../Models/Paciente_model.php';
 require_once __DIR__ . '/../../../Models/Examen_model.php';
 require_once __DIR__ . '/../../../Models/error_model.php';
 require_once __DIR__ . '/../../../Database.php';
@@ -17,7 +17,7 @@ class RecepDaoImpl implements RecepDao
         $this->error = new Error_model();
         $this->db = new Database();
     }
-    public function insertUser(Paciente_Model $admin)
+    public function insertUser(PacienteModel $admin)
     {
         $validateQuery = "INSERT INTO pacientes(rut, nombre, apPat, apMat, telefono, direccion, mail, fechaNacimiento, genero) 
         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -31,7 +31,7 @@ class RecepDaoImpl implements RecepDao
         $telefono = $admin->getTelefono();
         $direccion = $admin->getDireccion();
         $mail = $admin->getMail();
-        $Fnac = $admin->getFnac();
+        $Fnac = $admin->getFechaNacimiento();
         $genero = $admin->getGenero();
 
         if (empty($nombre)) {

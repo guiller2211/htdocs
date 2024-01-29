@@ -127,24 +127,29 @@ function actualizarSelect(data) {
     select.append(option);
   });
 }
-
 function controlVisi1() {
-  var elemento2 = document.getElementById("ingreso");
-  elemento.style.display = "none";
-  elemento2.style.display = "block";
+  var elemento = document.getElementById('ingreso');
+  var elemento2 = document.getElementById('diagnostico');
+  var elemento3 = document.getElementById('ingresarPaciente');
+  elemento.style.display = 'block';
+  elemento2.style.display = 'none';
+  elemento3.style.display = 'none';
 }
 
 function controlVisi2() {
-  var elemento = document.getElementById("ingreso");
-  var elemento2 = document.getElementById("diagnostico");
-  elemento.style.display = "none";
-  elemento2.style.display = "block";
+  var elemento = document.getElementById('ingreso');
+  var elemento2 = document.getElementById('diagnostico');
+  var elemento3 = document.getElementById('ingresarPaciente');
+  elemento.style.display = 'none';
+  elemento2.style.display = 'block';
+  elemento3.style.display = 'none';
 }
+
 function controlVisi3() {
-  var elemento = document.getElementById("ingresarPaciente");
-  var elemento2 = document.getElementById("diagnostico");
-  var elemento3 = document.getElementById("ingreso");
-  elemento.style.display = "block";
-  elemento2.style.display = "none";
-  elemento3.style.display = "none";
+  var elemento = document.getElementById('ingresarPaciente');
+  var elemento2 = document.getElementById('diagnostico');
+  var elemento3 = document.getElementById('ingreso');
+  elemento.style.display = 'block';
+  elemento2.style.display = 'none';
+  elemento3.style.display = 'none';
 }

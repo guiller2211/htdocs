@@ -5,30 +5,6 @@
 </head>
 
 <div class="container">
-    <div class="col">
-        <select id="miAdmin">
-
-        </select>
-    </div>
-    <div class="col">
-        <input type="text" id="buscar" placeholder="Buscar">
-
-    </div>
-    <div class="col">
-        <input type="text" id="observacion">
-
-    </div>
-    <div class="col">
-        <input type="text" id="fecha">
-
-    </div>
-</div>
-
-
-
-
-
-<div class="container">
     <h1 class="text-center">Lista de Exámenes Médicos</h1>
     <div class="row">
         <div class="col-12">

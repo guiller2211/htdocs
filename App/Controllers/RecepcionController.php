@@ -47,7 +47,8 @@ class RecepcionController
         
         $admin= new RecepDaoImpl();
         
-        $PacienteModel = new Paciente_Model();
+        $PacienteModel = new PacienteModel();
+
         $PacienteModel->SetRut($rut);
         $PacienteModel->SetNombre($nombre);
         $PacienteModel->SetApPat($apPat);
@@ -55,7 +56,7 @@ class RecepcionController
         $PacienteModel->SetTelefono($telefono);
         $PacienteModel->SetDireccion($direccion);
         $PacienteModel->SetMail($mail);
-        $PacienteModel->SetFnac($Fnac);
+        $PacienteModel->SetFechaNacimiento($Fnac);
         $PacienteModel->SetGenero($genero);
       
         $result = $admin->insertUser($PacienteModel);
