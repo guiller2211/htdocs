@@ -1,12 +1,12 @@
 <head>
     <title>Resultados</title>
-    <link rel="stylesheet" href="../../../../public/css/user.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/user.css">
 </head>
 
 <div class="fondo">
     <div class="user-section">
         <form id="formBuscar" class="form" method="post">
-            <img src="../../../../public/img/logo.png" width="200" height="100" alt="">
+            <img src="/ipleones/labMuest/public/img/logo.png" width="200" height="100" alt="">
             <p style="text-align: center;">Mis Resultados</p>
             <div class="input-container">
                 <input type="text" id="buscar" name="datos" placeholder="Ingrese el dato a buscar" required>
@@ -86,4 +86,8 @@
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
+<<<<<<< HEAD
 <script src="../../../../public/js/usuario.js"></script>
+=======
+                    <script src="/ipleones/labMuest/public/js/usuario.js"></script>
+>>>>>>> f131f0f (agregando al servicio)

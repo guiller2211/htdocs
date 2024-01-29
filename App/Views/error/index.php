@@ -14,6 +14,6 @@
             <a class="btn btn-primary" href="/">volver</a>
 
         </h1>
-        <a href="/"><img src="../../../../public/img/logo.png" width="500"></a>
+        <a href="/"><img src="/ipleones/labMuest/public/img/logo.png" width="500"></a>
     </div>
 </body>

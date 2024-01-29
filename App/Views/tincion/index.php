@@ -1,6 +1,6 @@
 <head>
-    <link rel="stylesheet" href="../../../../public/css/diagnostico.css">
-    <link rel="stylesheet" href="../../../../public/css/tincion.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/diagnostico.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/tincion.css">
     <title>Tinción</title>
 </head>
 
@@ -72,6 +72,6 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<script src="../../../../public/js/tincion.js"></script>
+<script src="/ipleones/labMuest/public/js/tincion.js"></script>
 
 </div>

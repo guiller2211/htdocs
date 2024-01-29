@@ -1,6 +1,6 @@
 
 <head>
-    <link rel="stylesheet" href="../../../../public/css/recepcion.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/recepcion.css">
     <title>Recepci&oacute;n</title>
 </head>
     <div class="contenedor-principal-servicios">
@@ -18,7 +18,7 @@
             <div class="izquierda">
                 <div class="campo">
                     <div class="p-servicio">
-                        <img class="img-servicio"src="../../../../public/img/examen1.jpg" alt="Imagen de experto bioanalista">
+                        <img class="img-servicio"src="/ipleones/labMuest/public/img/examen1.jpg" alt="Imagen de experto bioanalista">
                         <h3>Diagnóstico de muestras PAP</h3>
                         <p>El PAP O Papanicolau es un examen del cual se obtienen células sueltas o desprendidas del cuello 
                             uterino de la mujer (parte inferior del útero) permitiendo detectar alteraciones para el 
@@ -32,7 +32,7 @@
             <div class="izquierda">
                 <div class="campo">
                     <div class="p-servicio">
-                        <img class="img-servicio" src="../../../../public/img/examen2.jpg" alt="Imagen de experto bioanalista">
+                        <img class="img-servicio" src="/ipleones/labMuest/public/img/examen2.jpg" alt="Imagen de experto bioanalista">
                         <h3>Diagn&oacute;stico de HPV</h3>
                         <p>EL VPH (Virus del papiloma humano) o HPV (siglas en ingles) es una serie de virus pertenecientes
                              a la misma familia, que no solo afecta a las mujeres, puede ser desarrollado en la boca, piel, 
@@ -47,7 +47,7 @@
             <div class="izquierda">
                 <div class="campo">
                     <div class="p-servicio">
-                        <img class="img-servicio" src="../../../../public/img/examen3.jpg" alt="Imagen de experto bioanalista">
+                        <img class="img-servicio" src="/ipleones/labMuest/public/img/examen3.jpg" alt="Imagen de experto bioanalista">
                         <h3>Biopsias</h3>
                         <p>En nuestro enfoque de seguimiento a la evoluci&oacute;n de diagn&oacute;sticos positivos, recepcionamos
                              las muestras para la biopsia y apoy&aacute;ndonos en tecnolog&iacute;a de punta revisamos las muestras 

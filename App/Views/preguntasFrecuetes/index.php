@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="../../../../public/css/recepcion.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/recepcion.css">
     <title>Recepci&oacute;n</title>
 </head>
     <div class="contenedor-principal-servicios">
