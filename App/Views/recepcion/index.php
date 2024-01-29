@@ -2,12 +2,14 @@
     <link rel="stylesheet" href="../../../../public/css/recepcion.css">
     <title>Recepci&oacute;n</title>
 </head>
+
 <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-center flex-column">
         <h2 class="titulo-recep">Recepcion y Digitacion</h2>
         <nav class="nav-ok">
             <a class="enlace-nav" href="#" onclick="controlVisi1()">REGISTRAR EXAMEN</a>
             <a class="enlace-nav" href="#" onclick="controlVisi2()">ENTREGAR RESULTADOS</a>
+            <a class="enlace-nav" href="#" onclick="controlVisi3()">REGISTRAR PACIENTE</a>
         </nav>
         <div id="diagnostico" style="display:none">
             <div class="container-fluid">
@@ -130,6 +132,15 @@
             </form>
         </div>
 
+        <!--REGISTRO EXAMEN-->
+        <div id="ingreso" class="ver-ingreso">
+            <?php include("complementos/registroExamen.php"); ?>
+        </div>
+
+        <!--INGRESAR PACIENTE-->
+        <div id="ingresarPaciente" class="ver-ingresos formulario" style="display:none">
+            <?php include("complementos/ingresarUsuario.php"); ?>
+        </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
