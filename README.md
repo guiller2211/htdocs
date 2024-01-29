@@ -1,4 +1,3 @@
-- **Contoller**
 
 /htdocs/app
    /Controllers
@@ -28,3 +27,4 @@
 /htdocs
   .htaccess
   index.php
+  .gitignore

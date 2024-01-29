@@ -8,19 +8,19 @@
   </ol>
   <div class="carousel-inner">
     <div class="item active">
-      <img src="../../../../public/img/2.jpg">
+      <img src="/ipleones/labMuest/public/img/2.jpg">
     </div>
     <div class="item">
-      <img src="../../../../public/img/1.jpg">
+      <img src="/ipleones/labMuest/public/img/1.jpg">
     </div>
     <div class="item">
-      <img src="../../../../public/img/3.jpg">
+      <img src="/ipleones/labMuest/public/img/3.jpg">
     </div>
     <div class="item">
-      <img src="../../../../public/img/4.jpg">
+      <img src="/ipleones/labMuest/public/img/4.jpg">
     </div>
     <div class="item">
-      <video src="../../../../public/img/video.mp4" autoplay="autoplay" controls muted></video>
+      <video src="/ipleones/labMuest/public/img/video.mp4" autoplay="autoplay" controls muted></video>
     </div>
   </div>
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">

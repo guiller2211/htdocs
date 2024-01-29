@@ -1,11 +1,11 @@
 <head>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/admin.css">
     <title>Administrador</title>
 </head>
 
 <div class="formContainer">
     <div class="formulario" id="imgPrincipal">
-        <img src="../../../public/img/admin.png" alt="imagen" class="imgPrincipal" />
+        <img src="/ipleones/labMuest/public/img/admin.png" alt="imagen" class="imgPrincipal" />
         <h3>Bienvenido al panel Administrador</h3>
         <hr />
         <p>Puede accerder a las acciones desde el menu superior</p>
@@ -16,7 +16,7 @@
 
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="formulario" style="display: none;" id="formularioUsuarios"> <!-- inicio formulario-->
-        <img src="../../../public/img/user.png" alt="imagen" />
+        <img src="/ipleones/labMuest/public/img/user.png" alt="imagen" />
         <h1>Registro de usuario</h1>
         <form method="POST" id="formRegistro">
             <div class="username">
@@ -58,7 +58,7 @@
 
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="formulario" style="display: none;" id="formularioActualizarUsuarios"> <!-- inicio formulario-->
-        <img src="../../../public/img/user.png" alt="imagen" />
+        <img src="/ipleones/labMuest/public/img/user.png" alt="imagen" />
         <h1>Actualizar Datos</h1>
         <form method="POST" id="formActualizar">
             <div class="username">
@@ -97,7 +97,7 @@
 
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="formulario" style="display: none;" id="formularioEliminarUsuarios"> <!-- inicio formulario-->
-        <img src="../../../public/img/user.png" alt="imagen" />
+        <img src="/ipleones/labMuest/public/img/user.png" alt="imagen" />
         <h1>Eliminar registro</h1>
         <form method="POST" id="formEliminar">
             <div class="username">
@@ -112,7 +112,7 @@
 
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="formulario" style="display: none;" id="formularioCentroMedico"> <!-- inicio formulario-->
-        <img src="../../../public/img/hospital.png" alt="imagen" />
+        <img src="/ipleones/labMuest/public/img/hospital.png" alt="imagen" />
         <h1>Registro centro medico</h1>
 
         <form method="post" id="registroCentro">
@@ -133,7 +133,7 @@
 
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="formulario" style="display: none;" id="formularioActualizarCentros"> <!-- inicio formulario-->
-        <img src="../../../public/img/hospital.png" alt="imagen" />
+        <img src="/ipleones/labMuest/public/img/hospital.png" alt="imagen" />
         <h1>Actualizar centro medico</h1>
 
         <form method="post" id="formActualizarCentro">
@@ -151,7 +151,7 @@
 <!-- FORMULARIO ELIMINAR CENTROS-->
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="formulario" style="display: none;" id="formularioEliminarCentros"> <!-- inicio formulario-->
-        <img src="../../../public/img/hospital.png" alt="imagen" />
+        <img src="/ipleones/labMuest/public/img/hospital.png" alt="imagen" />
         <h1>Eliminar centro medico</h1>
 
         <form method="post" id="formEliminarCentro">
@@ -167,12 +167,12 @@
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="Optionconsultas formulario" id="verOpciones" style="display: none;">
         <a onclick="mostrarFormulario('frecuenciaFecha')" href="#">
-            <img src="../../../public/img/blood-sample.png">
+            <img src="/ipleones/labMuest/public/img/blood-sample.png">
             <h3> Frecuencia por fecha</h3>
         </a>
 
         <a onclick="mostrarFormulario('frecuenciaCentroMedico')" href="#">
-            <img src="../../../public/img/test.png">
+            <img src="/ipleones/labMuest/public/img/test.png">
             <h3> Frecuencia por centro médico</h3>
         </a>
     </div>
@@ -181,7 +181,7 @@
 
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="formulario" style="display: none;" id="frecuenciaFecha"> <!-- inicio formulario-->
-        <img src="../../../public/img/chart.png" alt="imagen" />
+        <img src="/ipleones/labMuest/public/img/chart.png" alt="imagen" />
         <h1>Consultar frecuencia</h1>
 
         <form method="post" id="formBusqueda">
@@ -200,7 +200,7 @@
 
 <div class="formContainer"> <!-- inicio formContainer -->
     <div class="formulario" style="display: none;" id="frecuenciaCentroMedico"> <!-- inicio formulario-->
-        <img src="../../../public/img/chart.png" alt="imagen" />
+        <img src="/ipleones/labMuest/public/img/chart.png" alt="imagen" />
         <h1>Consultar frecuencia Centro de toma de muestra</h1>
 
         <form method="post" id="formFrecuencia">
@@ -220,4 +220,4 @@
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<script src="../../../../public/js/admin.js"></script>
+<script src="/ipleones/labMuest/public/js/admin.js"></script>

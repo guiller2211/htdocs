@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="../../../../public/css/home.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/home.css">
     <title>Pagina principal</title>
 </head>
 

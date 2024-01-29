@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="../../../../public/css/diagnostico.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/diagnostico.css">
     <title>Interfaz de Diagnosticos Médicos</title>
 </head>
 
