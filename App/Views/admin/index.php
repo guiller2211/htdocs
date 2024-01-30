@@ -35,14 +35,15 @@
             </div>
 
             <div class="username">
-                <input type="text" required placeholder="Procedencia" id="procedencia" />
+                <select type="text" required class="form-select form-select-lg mb-3" id="procedencia" >
+                </select>
             </div>
 
             <div class="username">
                 <input type="text" required placeholder="Mail" id="mail" />
             </div>
             <div class="username">
-                <input type="number" required placeholder="Nivel" id="nivel" />
+                <input type="number" min="1" max="5"  required placeholder="Nivel" id="nivel" />
             </div>
 
             <input class="registrar" type="submit" value="Registrar" />
@@ -62,7 +63,8 @@
         <h1>Actualizar Datos</h1>
         <form method="POST" id="formActualizar">
             <div class="username">
-                <input type="text" required placeholder="Rut a Consultar" id="rut_actualizar" />
+                <select type="text" required class="form-select form-select-lg mb-3" id="rut_actualizar" >
+                </select>
             </div>
             <div class="username">
                 <input type="text" required placeholder="nombre" id="nombre_actualizar" />
@@ -77,7 +79,8 @@
             </div>
 
             <div class="username">
-                <input type="text" required placeholder="Procedencia" id="procedencia_actualizar" />
+                <select type="text" required class="form-select form-select-lg mb-3" id="procedencia_actualizar" >
+                </select>
             </div>
 
             <div class="username">
@@ -85,7 +88,7 @@
             </div>
 
             <div class="username">
-                <input type="number" required placeholder="Nivel" id="nivel_actualizar" />
+                <input type="number" min="1" max="5" required placeholder="Nivel" id="nivel_actualizar" />
             </div>
 
             <input class="registrar" type="submit" value="Actualizar" />
@@ -138,7 +141,8 @@
 
         <form method="post" id="formActualizarCentro">
             <div class="username">
-                <input type="text" required placeholder="Codigo del centro médico" id="codigo_actualizar" />
+                <select type="text" required class="form-select form-select-lg mb-3" id="codigo_actualizar" >
+                </select>
             </div>
             <div class="username">
                 <input type="text" required placeholder="Nombre del centro médico" id="nombre_actualizarCentro" />
