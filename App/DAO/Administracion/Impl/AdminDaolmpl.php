@@ -389,8 +389,12 @@ class AdminDaoImpl implements AdminDao
     }
     public function buscarCentros(centroModel $centro)
     {
-        $tableName = "examenes";
-        $query_seleccionar = "SELECT * FROM $tableName WHERE fecha BETWEEN ? AND ?";
+        $nombreTabla = "examenes";
+        $tablaDiagnostico = "diagnostico";
+        $query_seleccionar = "SELECT $nombreTabla.*, $tablaDiagnostico.descripcion AS nombre_diagnostico
+        FROM $nombreTabla
+        JOIN $tablaDiagnostico ON $nombreTabla.diagnostico_codigo = $tablaDiagnostico.codigo
+        WHERE $nombreTabla.fecha BETWEEN ? AND ?";
 
         $stmt = mysqli_prepare($this->db->getConnection(), $query_seleccionar);
 
@@ -427,8 +431,13 @@ class AdminDaoImpl implements AdminDao
 
     public function buscarFrecuenciaCentros(centroModel $centro)
     {
-        $tableName = "examenes";
-        $query_seleccionar = "SELECT * FROM $tableName WHERE centro_codigo=?";
+        // $tableName = "examenes";
+        $nombreTabla = "examenes";
+        $tablaDiagnostico = "diagnostico";
+        $query_seleccionar = "SELECT $nombreTabla.*, $tablaDiagnostico.descripcion AS nombre_diagnostico
+                          FROM $nombreTabla
+                          JOIN $tablaDiagnostico ON $nombreTabla.diagnostico_codigo = $tablaDiagnostico.codigo
+                          WHERE $nombreTabla.centro_codigo=?";
 
         $stmt = mysqli_prepare($this->db->getConnection(), $query_seleccionar);
 

@@ -34,10 +34,6 @@ class InsertDataBase
 
         $Create = mysqli_query($this->db->getConnection(), $buildTable);
 
-        $this->error->handlerErrorBBDD($Create, $tableName);
-
-        $this->insertDefaultDataPerfiles($tableName);
-
         return true;
     }
 
