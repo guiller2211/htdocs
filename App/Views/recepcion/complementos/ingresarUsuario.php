@@ -41,10 +41,14 @@
 
             <div class="campo">
                 <label for="genero">Genero</label>
-                <input type="text" name="genero" id="genero1" placeholder="Genero">
+                <select  id="genero1" name="genero">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otros">Otros</option>
+                </select>
             </div>
         </div>
-        <!-- <input type="hidden" name="op" value="GUARDAR"> -->
+        
 
         <div class="dato-adi">
             <div class="campo-domicilio">
@@ -56,6 +60,7 @@
             <div class="contenedor-boton">
                 <div class="boton-form">
                     <input class="registrar" type="submit" value="Registrar" />
+                    <input type="reset" value="Borrar formulario">
                 </div>
             </div>
         </div>
