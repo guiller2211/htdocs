@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../../../Database.php';
 require_once __DIR__ . '/../DiagnosticoDao.php';
 
@@ -81,4 +82,30 @@ class DiagnosticoDaoImpl implements DiagnosticoDao
         $examenes = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $examenes;
     }
+
+    public function updateDiagnosticoExamen($codigoDiagnostico, $idExamen) {
+        // Corregir la consulta SQL y el nombre de la variable $idExamen
+        $sql = "UPDATE Examenes
+                SET diagnostico_codigo = '$codigoDiagnostico'
+                WHERE Examenes.id = $idExamen";
+    
+        $stmt = mysqli_prepare($this->db->getConnection(), $sql); // Corregir $query_update a $sql
+        if (!$stmt) {
+            $this->error->handlerErrorBBDD($stmt, "Error al preparar la declaración");
+            return false;
+        }
+    
+        $result = mysqli_stmt_execute($stmt);
+    
+        // Verificar si la actualización fue exitosa
+        if (!$result) {
+            // Error en la actualización, mostrar un mensaje de error
+            $this->error->handlerErrorBBDD($stmt, "Error al ejecutar la actualización"); // Corregir $result a $stmt
+    
+            return false;
+        }
+    
+        return true;
+    }
+
 }    

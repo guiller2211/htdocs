@@ -1,11 +1,12 @@
 <head>
     <link rel="stylesheet" href="/ipleones/labMuest/public/css/diagnostico.css">
+
     <title>Interfaz de Diagnosticos Médicos</title>
 </head>
 
 <body>
     <div class="mb-5 text-center ">
-        <h2>Diagnostico de Muestra</h2>
+        <h2>Diagnosticos de Muestra</h2>
     </div>
     <div class="container text-center">
         <div class="row">
@@ -16,7 +17,7 @@
 
                     <div class="col">
                         <label for="idExamen">ID de Examen:</label>
-                        <input class="mb-3" type="number" id="idExamen" name="idExamen">
+                        <input class="mb-3" type="text" id="idExamen" name="idExamen">
                     </div>
                     <div class="col">
                         <label for="nombrePaciente">Nombre del Paciente:</label>
@@ -87,58 +88,26 @@
 
                 <label for="modEstado">Nuevo Estado:</label>
                 <select id="modEstado" name="modEstado" required>
-                    <option value="A">NEGATIVO</option>
-                    <option value="B">MUESTRA INADECUADA, VOLVER A TOMAR</option>
-                    <option value="C">LA MUESTRA PRESENTA INFECCIÓN</option>
-                    <option value="D">POSIBLE ADENOCARCINOMA</option>
-                    <option value="E">CANCER EPIDERMOIDE</option>
-                    <option value="F">MUESTRA ATROFICA</option>
+                <?php foreach ($codigosDiagnostico as $cod): ?>
+                    <option value="<?= $cod['codigo']; ?>"><?= $cod['descripcion']; ?></option>
+                <?php endforeach;?>
                 </select>
-                <label for="modDescripcion">Observación:</label>
-                <textarea type="text" id="modDescripcion" name="modDescripcion" required></textarea>
-                <br>
+                <input type="hidden" id="idExamen">
                 <button class="button-diagnostico" type="button" onclick="updateExam()">Guardar Cambios</button>
             </form>
         </div>
     </div>
-    <div id="muestrasModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeMuestrasModal()">&times;</span>
-            <h2>Muestras del Examen</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID de Muestra</th>
-                        <th>Nombre</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Muestra de Sangre</td>
-                        <td>LA MUESTRA PRESENTA INFECCIÓN</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Muestra de Orina</td>
-                        <td>NEGATIVO</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Muestra de SALIVA</td>
-                        <td>MUESTRA ATROFICA</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
     </div>
     <script>
         // Funciones para mostrar y ocultar el modal
         function openModal(examId) {
             //Cargar la información del examen correspondiente en el modal
             document.getElementById("myModal").style.display = "flex";
+            document.getElementById("idExamen").value = examId;
+
         }
+
 
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
@@ -148,6 +117,43 @@
         function updateExam() {
             // Aquí puedes agregar lógica para actualizar el examen en la base de datos
             // y cerrar el modal después de la actualización
+            var codigo_diagnostico = document.getElementById("modEstado").value;
+            var idExamen = document.getElementById("idExamen").value;
+            
+            // Configurar los datos que se enviarán en la solicitud
+
+            var data = {
+            id: idExamen,
+            codigoDiagnostico: codigo_diagnostico
+            };
+            
+            // Realizar la llamada Fetch
+            fetch("diagnostico/actualizarEstadoDiagnostico", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                // Puedes agregar más encabezados según sea necesario
+            },
+            body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hacer algo con la respuesta del servidor
+                if(data.success){
+                    //Recargar la pagina
+                    alert("Registro actualizado correctamente");
+                    window.location.reload();
+
+                }else{
+                    alert("Ocurrio un error");
+                }
+                console.log(data);
+            })
+            .catch(error => {
+                // Manejar errores en la llamada Fetch
+                console.error('Error en la llamada Fetch:');
+            });
+
             closeModal();
         }
         // Cerrar el modal si se hace clic fuera del contenido
@@ -171,6 +177,5 @@
             document.getElementById("muestrasModal").style.display = "none";
         }
     </script>
-    
 </body>
 </html>
