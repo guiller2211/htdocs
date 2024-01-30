@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="../../../../public/css/recepcion.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/recepcion.css">
     <title>Recepci&oacute;n</title>
 </head>
 
@@ -80,6 +80,6 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<script src="../../../../public/js/recepcion.js"></script>
+<script src="/ipleones/labMuest/public/js/recepcion.js"></script>
 
 </html>
