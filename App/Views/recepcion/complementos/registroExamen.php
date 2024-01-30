@@ -55,6 +55,7 @@
         <div class="contenedor-boton">
             <div class="boton-form">
                 <input class="boton-enviar" type="submit" value="Registrar examen">
+                <input type="reset" class="boton-enviar" value="Borrar formulario">
             </div>
         </div>
     </div>

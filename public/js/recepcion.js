@@ -204,3 +204,5 @@ function controlVisi3() {
   elemento2.style.display = "none";
   elemento3.style.display = "none";
 }
+
+
