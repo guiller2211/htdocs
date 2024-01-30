@@ -19,7 +19,7 @@ class InsertDataBase
     public function createPerfiles()
     {
         $tableName = "Perfiles";
-    
+
         $buildTable = "CREATE TABLE IF NOT EXISTS $tableName (
             id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
             rut VARCHAR(12) UNIQUE NOT NULL,
@@ -31,19 +31,11 @@ class InsertDataBase
             mail VARCHAR(50) NOT NULL,
             nivel INT(3) NOT NULL
         )";
-    
+
         $Create = mysqli_query($this->db->getConnection(), $buildTable);
-        
-        if ($Create) {
-            $this->error->handlerErrorBBDD($Create, $tableName);
-            return false; 
-        }
-    
-        $this->insertDefaultDataPerfiles($tableName);
-    
+
         return true;
     }
-    
 
 
     public function createTableCentroDeTomas()
