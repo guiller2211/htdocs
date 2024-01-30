@@ -2,7 +2,10 @@
 require_once __DIR__ . '/../../Models/Paciente_model.php';
 interface RecepcionDao
 {
-    public function getRegistroRecepcion();
-    public function buscarRut(PacienteModel $paciente);
-
+    function getRegistroRecepcion();
+    function buscarRut(PacienteModel $paciente);
+    function consultaExamenRut(PacienteModel $paciente);
+    function getUsuarios();
+    function insertUser(PacienteModel $admin);
+    function insertExamen(ExamenModel $admin);
 }

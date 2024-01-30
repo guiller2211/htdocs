@@ -109,10 +109,11 @@ $("#buscar").on("change", function (event) {
 });
 
 function actualizarSelect(data) {
-  // Fun actualizar el select con los datos obtenidos************
+  // Fun actualizar el select con los datos obtenidos************************************************************
   const select = $("select");
   select.empty(); // clear antes de actualizar
-
+  const optionSelect = $(`<option class="obtenerID">Seleccione Rut</option>`);
+  select.append(optionSelect);
   $.each(data, function (i, row) {
     const option = $(
       `<option data-test="${row.rut}" class="obtenerID">${row.rut}</option>`
@@ -205,4 +206,52 @@ function controlVisi3() {
   elemento3.style.display = "none";
 }
 
+function mostrarResultBusqueda(data) {
+  console.log(data);
+  const tbody = $("#recepDiag");
+  tbody.empty();
 
+  $.each(data, function (i, row) {
+    const tr = $("<tr>");
+    tr.append(
+      `
+      <td> ${row.rut} </td>
+      <td> ${row.nombre} </td>
+      <td> ${row.apPat} </td>
+      <td> ${row.apMat} </td>
+      <td> ${row.telefono} </td>
+      <td> ${row.centro_codigo} </td>
+      <td> ${row.fecha} </td>
+      <td>
+        <button class="btn btn-primary btn-sm">Ver Diagnostico</button>
+      </td>
+      `
+    );
+    tbody.append(tr);
+  });
+}
+
+$("#miAdmin").on("change", function (event) {
+  event.preventDefault();
+  // SE SELECCIONA RUT DEL SELECT Y SE EVALUA SI HAY O NO HAY DIAGNOSTICO DISPONIBLE PARA ENTREGA
+  var selectElement = $(this).find(":selected").data("test");
+  var rutBuscar = { rut: selectElement }; // arreglo variable para pasarla (rut es el nombre que buscare en controlador)
+  fetch("recepcion/evaluarRut", {
+    method: "POST",
+    body: JSON.stringify(rutBuscar),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        mostrarResultBusqueda(data);
+      } else {
+        alert("Error en la actualización: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});

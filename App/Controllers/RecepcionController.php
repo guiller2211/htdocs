@@ -2,7 +2,6 @@
 session_start();
 
 require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepcionDaoImpl.php';
-require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepDaoImpl.php';
 require_once __DIR__ . '/../Models/Paciente_model.php';
 require_once __DIR__ . '/../Models/Examen_model.php';
 
@@ -30,7 +29,7 @@ class RecepcionController
 
     public function getData()
     {
-        $admin= new RecepDaoImpl();
+        $admin= new RecepcionDaoImpl();
         $data = $admin->getUsuarios();
 
         if ($data instanceof mysqli_result) {
@@ -66,7 +65,7 @@ class RecepcionController
         $Fnac = $data['Fnac'];
         $genero = $data['genero'];
         
-        $admin= new RecepDaoImpl();
+        $admin= new RecepcionDaoImpl();
         
         $PacienteModel = new PacienteModel();
 
@@ -104,7 +103,7 @@ class RecepcionController
         $fecha = $data['fecha']; 
         $centro_codigo = $data['centroCodigo']; 
 
-        $recepcionDao= new RecepDaoImpl();
+        $recepcionDao= new RecepcionDaoImpl();
         $ExamenModel = new ExamenModel();
         $ExamenModel->setPacienteId($paciente_id);
         $ExamenModel->setCentroCodigo($centro_codigo);
@@ -138,6 +137,41 @@ class RecepcionController
         $recepcionModel->setRut($rut);
 
         $result = $recepcion->buscarRut($recepcionModel);
+
+        if ($result instanceof mysqli_result) {
+            $data = array();
+
+            while ($row = $result->fetch_assoc()) {
+
+                $data[] = $row;
+            }
+
+            echo json_encode($data);
+        } else {
+
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
+
+    public function evaluarRut() // EVALUAR RUT PARA VER SI TIENE DIAGNOSTICO
+    {
+        $json = file_get_contents('php://input');
+
+        $dataJson = json_decode($json, true);
+
+        if ($dataJson === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
+            return;
+        }
+        $rut = $dataJson['rut'];
+
+        $recepcion = new RecepcionDaoImpl();
+
+        $recepcionModel = new PacienteModel();
+
+        $recepcionModel->setRut($rut);
+
+        $result = $recepcion->consultaExamenRut($recepcionModel);
 
         if ($result instanceof mysqli_result) {
             $data = array();
