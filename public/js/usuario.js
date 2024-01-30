@@ -22,10 +22,12 @@ $("#formBuscar").on("submit", function (event) {
         tablaResultado(data);
       } else {
         alert("Error en la actualización: " + data.message);
+        
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
+      window.alert('Datos inexistentes');
     });
 });
 
@@ -38,15 +40,15 @@ function tablaPaciente(data) {
     tr.html(
       `
       <td> ${row.id} </td>
-      <td> ${row.rut} </td>
-      <td> ${row.nombre} </td>
-      <td> ${row.apPat} </td>
-      <td> ${row.apMat} </td>
-      <td> ${row.telefono} </td>
-      <td> ${row.direccion} </td>
-      <td> ${row.mail} </td>
-      <td> ${row.fechaNacimiento} </td>
-      <td> ${row.genero} </td>
+      <td> ${row.paciente_id} </td>
+      <td> ${row.rut_paciente} </td>
+      <td> ${row.apPat_paciente} </td>
+      <td> ${row.apMat_paciente} </td>
+      <td> ${row.telefono_paciente} </td>
+      <td> ${row.direccion_paciente} </td>
+      <td> ${row.mail_paciente} </td>
+      <td> ${row.fechaNacimiento_paciente} </td>
+      <td> ${row.genero_paciente} </td>
       `
     );
     tbody.append(tr);
@@ -60,14 +62,21 @@ function tablaResultado(data) {
     const tr = $("<tr>");
     tr.html(
       `
-      <td> ${row.descripcion} </td>
-      <td> ${row.resultado} </td>
       <td> ${row.nombre_centro} </td>
-      <td> ${row.codigo} </td>
+      <td> ${row.diagnostico_codigo} </td>
+      <td> ${row.resultado} </td>
+      <td> ${row.descripcion} </td>
+      <td> ${row.fecha} </td>
+      <td> ${row.fecha_tincion} </td>
+      <td> ${row.fecha_diagnostico} </td>
+      <td> ${row.fecha_entrega} </td>
       <td> ${row.Confirmacion} </td>
       <td> ${row.observacion} </td>
-      `
+      <td>${row.dias_entre_examenes_diagnostico}</td>
+       `
     );
     tbody.append(tr);
   });
+
 }
+

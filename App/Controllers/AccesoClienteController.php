@@ -48,6 +48,7 @@ class AccesoClienteController
             echo json_encode($data);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización '.$procedencia. $nivel.'']);
+            echo "<script>alert('Datos no encontrados');</script>";
         }
     }
 }
