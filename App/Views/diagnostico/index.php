@@ -5,7 +5,7 @@
 
 <body>
     <div class="mb-5 text-center ">
-        <h2>Diagnosticos de Muestra</h2>
+        <h2>Diagnostico de Muestra</h2>
     </div>
     <div class="container text-center">
         <div class="row">
@@ -171,5 +171,6 @@
             document.getElementById("muestrasModal").style.display = "none";
         }
     </script>
+    
 </body>
 </html>
