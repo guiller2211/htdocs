@@ -208,9 +208,8 @@
         <h1>Consultar frecuencia Centro de toma de muestra</h1>
 
         <form method="post" id="formFrecuencia">
-            <div class="username">
-                <input type="text" required name="date_1" id="codigo_busqueda" placeholder="Nombre de centro medico" />
-            </div>
+                <select type="text" required class="form-select form-select-lg mb-3" id="codigo_busqueda" >
+                </select>
             <input class="registrar" type="submit" value="Buscar Registros" />
         </form>
         <input type="button" value="Exportar a Excel" id="exportarAExcel2">
@@ -218,8 +217,10 @@
 
 </div> <!-- Fin div formContainer -->
 
-<div id="resultadoBusqueda" style="display: none;" id="verResultado">
+<div id="resultadoBusqueda" style="display: none; text-align: center ">
+<h1 id="CountFrecuencia" style="margin: 0;"></h1>
     <!-- Aquí se mostrarán los resultados de la búsqueda -->
+    
 </div>
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
