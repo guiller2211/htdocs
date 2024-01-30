@@ -32,7 +32,6 @@ Al trabajar con Git y necesitar hacer un rebase con la rama `develop`, sigue est
    git push
    ```
 
-
 **Actualizar la rama develop y la rama de trabajo:**
 
 1. **Actualizar la rama develop:**
@@ -67,20 +66,22 @@ Al trabajar con Git y necesitar hacer un rebase con la rama `develop`, sigue est
    ```
 
 **Estructura:**
-   ```bash
-   /htdocs
-      /App
-         /Controllers
-         /DAO
-         /Models
-         /Router
-         /Views
-      /public
-         /css
-         /img
-         /js
-   ```
 
+```bash
+/htdocs
+   /App
+      /Controllers
+      /DAO
+      /Hooks
+      /Models
+      /Nodes
+      /Router
+      /Views
+   /public
+      /css
+      /img
+      /js
+```
 
 ### Controllers
 
@@ -110,19 +111,37 @@ Al trabajar con Git y necesitar hacer un rebase con la rama `develop`, sigue est
 
 <hr>
 
+### Hooks
+
+<hr>
+
+- css
+- img
+- FormatoPDF.php
+
+<hr>
+
 ### Models
 
 <hr>
 
-- Access_model_.php
-- Admin_model_.php
-- CentroDeTomas_model_.php
+- Access*model*.php
+- Admin*model*.php
+- CentroDeTomas*model*.php
 - Error_model.php
-- Examen_model_.php
-- Insert_model_.php
-- Paciente_model_.php
-- Tincion_model_.php
-- Usuario_model_.php
+- Examen*model*.php
+- Insert*model*.php
+- Paciente*model*.php
+- Tincion*model*.php
+- Usuario*model*.php
+
+<hr>
+
+### Nodes
+
+<hr>
+
+- dompdf
 
 <hr>
 

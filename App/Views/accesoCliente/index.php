@@ -21,29 +21,57 @@
 
     </div>
     <br>
-    <form action="pdf/crearpdf.php" method="post">
-        <div class="tablaPaciente container" style="display:none;">
+    <div class="tablaPaciente container" style="display:none;">
+    <a id="crearPdf" class="btnBuscar">Crear PDF</a>
+
+        <div class="container">
+            <h1 class="text-center">Datos Paciente</h1>
+            <div class="row">
+                <div class="col-12">
+                    <table id="tablaPaciente">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Rut</th>
+                                <th>Nombre</th>
+                                <th>Paterno</th>
+                                <th>Materno</th>
+                                <th>Telefono</th>
+                                <th>Dirección</th>
+                                <th>Mail</th>
+                                <th>FechaNacimiento</th>
+                                <th>Genero</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyPaciente">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="tablaResultado container" style="display:none;">
             <table class="table table-bordered">
                 <div class="container">
-                    <h1 class="text-center">Datos Paciente</h1>
+                    <h1 class="text-center">Resultado</h1>
                     <div class="row">
                         <div class="col-12">
-                            <table>
+                            <table id="tablaResultado">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Rut</th>
-                                        <th>Nombre</th>
-                                        <th>Paterno</th>
-                                        <th>Materno</th>
-                                        <th>Telefono</th>
-                                        <th>Dirección</th>
-                                        <th>Mail</th>
-                                        <th>FechaNacimiento</th>
-                                        <th>Genero</th>
+                                        <td> Centro Médico </td>
+                                        <td> Diagnostico Código </td>
+                                        <td> Resultado </td>
+                                        <td> Descripción </td>
+                                        <td> Fecha de Examén</td>
+                                        <td> Fecha de Tinción</td>
+                                        <td> Fecha de Diagnóstico </td>
+                                        <td> Fecha de Entrega </td>
+                                        <td>Días en proceso</td>
                                     </tr>
                                 </thead>
-                                <tbody id="tbodyPaciente">
+                                <tbody id="tbodyResultado">
                                 </tbody>
                             </table>
                         </div>
@@ -51,44 +79,11 @@
                 </div>
                 <br>
                 <br>
-                <div class="tablaResultado container" style="display:none;">
-                    <table class="table table-bordered">
-                        <div class="container">
-                            <h1 class="text-center">Resultado</h1>
-                            <div class="row">
-                                <div class="col-12">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <td> Centro Médico </td>
-                                                <td> Diagnostico Código </td>
-                                                <td> Resultado </td>
-                                                <td> Descripción </td>
-                                                <td> Fecha de Examén</td>
-                                                <td> Fecha de Tinción</td>
-                                                <td> Fecha de Diagnóstico </td>
-                                                <td> Fecha de Entrega </td>
-                                                <td> Confirmación </td>
-                                                <td> Observación </td>
-                                                <td>Días en proceso</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tbodyResultado">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <br>
+            </table>
+        </div>
+    </div>
+</div>
 
-                        <input id="buscar" type='submit' name="datos" class="btnBuscar" value="Crear PDF">
-    </form>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<<<<<<< Updated upstream
-                    <script src="../../../../public/js/usuario.js"></script>
-=======
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-    <script src="../../../../public/js/usuario.js"></script>
->>>>>>> Stashed changes
+<script src="../../../../public/js/usuario.js"></script>
