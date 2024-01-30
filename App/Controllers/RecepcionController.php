@@ -2,7 +2,6 @@
 session_start();
 
 require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepcionDaoImpl.php';
-require_once __DIR__ . '/../DAO/Recepcion/Impl/RecepDaoImpl.php';
 require_once __DIR__ . '/../Models/Paciente_model.php';
 require_once __DIR__ . '/../Models/Examen_model.php';
 
@@ -30,7 +29,7 @@ class RecepcionController
 
     public function getData()
     {
-        $admin= new RecepDaoImpl();
+        $admin= new RecepcionDaoImpl();
         $data = $admin->getUsuarios();
 
         if ($data instanceof mysqli_result) {
@@ -66,7 +65,7 @@ class RecepcionController
         $Fnac = $data['Fnac'];
         $genero = $data['genero'];
         
-        $admin= new RecepDaoImpl();
+        $admin= new RecepcionDaoImpl();
         
         $PacienteModel = new PacienteModel();
 
@@ -104,7 +103,7 @@ class RecepcionController
         $fecha = $data['fecha']; 
         $centro_codigo = $data['centroCodigo']; 
 
-        $recepcionDao= new RecepDaoImpl();
+        $recepcionDao= new RecepcionDaoImpl();
         $ExamenModel = new ExamenModel();
         $ExamenModel->setPacienteId($paciente_id);
         $ExamenModel->setCentroCodigo($centro_codigo);

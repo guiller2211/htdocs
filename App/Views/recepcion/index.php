@@ -43,7 +43,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <tbody>
+                            <tbody id="recepDiag">
                                 <?php foreach ($data as $row) : ?>
                                     <tr>
                                         <td><?php echo $row['rut']; ?></td>
