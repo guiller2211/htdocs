@@ -69,5 +69,44 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
 
         return $result;
     }
+
+    public function consultaExamenRut(PacienteModel $paciente)
+    {
+        $rut = $paciente->getRut();
+        //$query = "SELECT * FROM pacientes WHERE rut LIKE '%$rut%'";
+
+        $query="SELECT
+                    pacientes.id,
+                    CASE
+                    WHEN EXISTS (
+                        SELECT 1
+                        FROM examenes
+                        WHERE examenes.paciente_id = pacientes.id
+                    )
+                    THEN (SELECT examenes.id FROM examenes WHERE examenes.paciente_id = pacientes.id)
+                    ELSE NULL
+                    END AS examenes_id
+                FROM pacientes
+                WHERE pacientes.rut = '$rut';";
+
+        $conn = $this->db->getConnection();
+        $stmt = mysqli_prepare($conn, $query);
+
+        if (!$stmt) {
+            $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
+            return false;
+        }
+
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+
+        mysqli_stmt_close($stmt);
+
+        return $result;
+    }
  
 }

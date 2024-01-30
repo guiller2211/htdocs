@@ -4,5 +4,6 @@ interface RecepcionDao
 {
     public function getRegistroRecepcion();
     public function buscarRut(PacienteModel $paciente);
+    public function consultaExamenRut(PacienteModel $paciente);
 
 }

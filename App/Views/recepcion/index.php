@@ -18,6 +18,9 @@
                         <h3>Rut de Paciente</h3>
                         <input type="text" class="form-control" id="buscar" placeholder="Rut">
                         <select id="miAdmin"></select>
+                        <div class="contieneTablaRe"> <!--aca quiero aterizar el resultado de la consulta id-->
+
+                        </div>
                     </div>
                 </div>
             </div>
