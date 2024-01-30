@@ -17,7 +17,7 @@ class HomeController
         }
 
         $accessModel = new access_models();
-        $tableName = "CentroDeTomas";
+        $tableName = "Perfiles";
         $showCreateTableButton = $accessModel->tableExists($tableName);
         include VIEWS_PATH . 'home/index.php';
 

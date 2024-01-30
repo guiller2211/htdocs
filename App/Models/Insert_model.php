@@ -41,7 +41,6 @@ class InsertDataBase
         return true;
     }
 
-
     public function createTableCentroDeTomas()
     {
         $tableName = "CentroDeTomas";

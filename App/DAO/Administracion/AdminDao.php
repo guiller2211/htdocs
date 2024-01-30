@@ -5,9 +5,6 @@ require_once __DIR__ . '/../../Models/centrodetomas_model.php';
 interface AdminDao
 {
     public function registroAdmin(AdminModel $admin);
-    public function getPerfiles();
-    public function getProcedencias();
-    public function getPerfil($id);
     public function getDataAdmin();
     public function actualizarAdmin(AdminModel $admin);
     public function eliminarAdmin(AdminModel $admin);
