@@ -3,7 +3,8 @@
 // Configuraci贸n de la base de datos
 define('DB_HOST', 'localhost');
 
-define('DB_NAME', 'richardc_wp171');
+//define('DB_NAME', 'richardc_wp171');
+define('DB_NAME', 'bddrichardcalderon');
 
 // Otras configuraciones
 define('APP_NAME', 'MiAplicacionMVC');
@@ -36,3 +37,4 @@ define('CONTROLLERS_PATH', __DIR__ . '/Controllers/');
 define('MODELS_PATH', __DIR__ . '/Models/');
 define('VIEWS_PATH', __DIR__ . '/Views/');
 define('APP_PATH', __DIR__ . '/');
+define('PUBLIC_PATH',  '/');
