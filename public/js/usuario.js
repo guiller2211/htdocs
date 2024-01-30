@@ -62,28 +62,11 @@ $("#crearPdf").on("click", function (event) {
 function tablaPaciente(data) {
   const tbody = $("#tbodyPaciente");
   tbody.empty();
-  if (data[0].rut_paciente === data[1].rut_paciente) {
+
+  $.each(data, function (i, row) {
     const tr = $("<tr>");
     tr.html(
       `
-      <td> ${data[0].id} </td>
-      <td> ${data[0].rut_paciente} </td>
-      <td> ${data[0].nombre_paciente} </td>
-      <td> ${data[0].apPat_paciente} </td>
-      <td> ${data[0].apMat_paciente} </td>
-      <td> ${data[0].telefono_paciente} </td>
-      <td> ${data[0].direccion_paciente} </td>
-      <td> ${data[0].mail_paciente} </td>
-      <td> ${data[0].fechaNacimiento_paciente} </td>
-      <td> ${data[0].genero_paciente} </td>
-      `
-    );
-    tbody.append(tr);
-  } else {
-    $.each(data, function (i, row) {
-      const tr = $("<tr>");
-      tr.html(
-        `
         <td> ${row.id} </td>
         <td> ${row.rut_paciente} </td>
         <td> ${row.nombre_paciente} </td>
@@ -95,10 +78,9 @@ function tablaPaciente(data) {
         <td> ${row.fechaNacimiento_paciente} </td>
         <td> ${row.genero_paciente} </td>
         `
-      );
-      tbody.append(tr);
-    });
-  }
+    );
+    tbody.append(tr);
+  });
 }
 function tablaResultado(data) {
   const tbody = $("#tbodyResultado");
