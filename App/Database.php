@@ -75,7 +75,7 @@ class Database
     public function createAndInsertData()
     {
         $insertDataBase = new InsertDataBase();
-        
+
         $insertDataBase->createTableCentroDeTomas();
         $insertDataBase->createTableDiagnostico();
         $insertDataBase->createTablePacientes();

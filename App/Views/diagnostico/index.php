@@ -16,7 +16,7 @@
 
                     <div class="col">
                         <label for="idExamen">ID de Examen:</label>
-                        <input class="mb-3" type="number" id="idExamen" name="idExamen">
+                        <input class="mb-3" type="text" id="idExamen" name="idExamen">
                     </div>
                     <div class="col">
                         <label for="nombrePaciente">Nombre del Paciente:</label>
@@ -53,25 +53,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($examenes as $examen): ?>
-                    <tr>
-                        <td ><?php echo $examen["id"]; ?></td>
-                        <td><?php echo $examen["diagnostico_codigo"]; ?></td>
-                        <td><?php echo $examen["rut"]; ?></td>
-                        <td><?php echo $examen["nombre"]; ?></td>
-                        <td><?php echo $examen["apPat"]; ?></td>
-                        <td><?php echo $examen["apMat"]; ?></td>
-                        <td><?php echo $examen["confirmacion"] == 1 ? "Confirmado":"No Confirmado"; ?></td>
-                        <td><?php echo $examen["observacion"]; ?></td>
-                        <td>
-                                <div class="row gap-1">
-                                    <div class="col">
-                                        <a href="#" onclick="openModal(<?= $examen['id'];?>)">Diagnosticar</a>
+                        <?php foreach ($examenes as $examen) : ?>
+                            <tr>
+                                <td><?php echo $examen["id"]; ?></td>
+                                <td><?php echo $examen["diagnostico_codigo"]; ?></td>
+                                <td><?php echo $examen["rut"]; ?></td>
+                                <td><?php echo $examen["nombre"]; ?></td>
+                                <td><?php echo $examen["apPat"]; ?></td>
+                                <td><?php echo $examen["apMat"]; ?></td>
+                                <td><?php echo $examen["confirmacion"] == 1 ? "Confirmado" : "No Confirmado"; ?></td>
+                                <td><?php echo $examen["observacion"]; ?></td>
+                                <td>
+                                    <div class="row gap-1">
+                                        <div class="col">
+                                            <a href="#" onclick="openModal(<?= $examen['id']; ?>)">Diagnosticar</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                    </tr>
-                <?php endforeach;?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -87,89 +87,20 @@
 
                 <label for="modEstado">Nuevo Estado:</label>
                 <select id="modEstado" name="modEstado" required>
-                    <option value="A">NEGATIVO</option>
-                    <option value="B">MUESTRA INADECUADA, VOLVER A TOMAR</option>
-                    <option value="C">LA MUESTRA PRESENTA INFECCIÓN</option>
-                    <option value="D">POSIBLE ADENOCARCINOMA</option>
-                    <option value="E">CANCER EPIDERMOIDE</option>
-                    <option value="F">MUESTRA ATROFICA</option>
+                    <?php foreach ($codigosDiagnostico as $cod) : ?>
+                        <option value="<?= $cod['codigo']; ?>"><?= $cod['descripcion']; ?></option>
+                    <?php endforeach; ?>
                 </select>
-                <label for="modDescripcion">Observación:</label>
-                <textarea type="text" id="modDescripcion" name="modDescripcion" required></textarea>
-                <br>
+
+
+                <input type="hidden" id="idExamen">
                 <button class="button-diagnostico" type="button" onclick="updateExam()">Guardar Cambios</button>
             </form>
         </div>
     </div>
-    <div id="muestrasModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeMuestrasModal()">&times;</span>
-            <h2>Muestras del Examen</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID de Muestra</th>
-                        <th>Nombre</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Muestra de Sangre</td>
-                        <td>LA MUESTRA PRESENTA INFECCIÓN</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Muestra de Orina</td>
-                        <td>NEGATIVO</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Muestra de SALIVA</td>
-                        <td>MUESTRA ATROFICA</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
     </div>
-    <script>
-        // Funciones para mostrar y ocultar el modal
-        function openModal(examId) {
-            //Cargar la información del examen correspondiente en el modal
-            document.getElementById("myModal").style.display = "flex";
-        }
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-        function closeModal() {
-            document.getElementById("myModal").style.display = "none";
-        }
-
-        // Función para procesar la actualización del examen
-        function updateExam() {
-            // Aquí puedes agregar lógica para actualizar el examen en la base de datos
-            // y cerrar el modal después de la actualización
-            closeModal();
-        }
-        // Cerrar el modal si se hace clic fuera del contenido
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("myModal")) {
-                closeModal();
-            }
-            if (event.target == document.getElementById("muestrasModal")) {
-                closeMuestrasModal();
-            }
-        };
-
-        // Funciones para mostrar y ocultar el modal de ver muestras
-
-        function openMuestrasModal(examId) {
-            // Aquí puedes cargar la información de las muestras correspondientes en el modal de ver muestras
-            document.getElementById("muestrasModal").style.display = "flex";
-        }
-
-        function closeMuestrasModal() {
-            document.getElementById("muestrasModal").style.display = "none";
-        }
-    </script>
+    <script src="../../../../public/js/diagnostico.js"></script>
 </body>
-</html>

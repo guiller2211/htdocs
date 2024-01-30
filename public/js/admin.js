@@ -32,7 +32,8 @@ $(document).ready(function () {
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error("Error en la solicitud Fetch");
+            alert("Error en la actualización: " + data.message);
+
           }
           return response.json();
         })
@@ -49,12 +50,14 @@ $(document).ready(function () {
             getPerfiles();
           } else if (data.message === "El código ya existe en la tabla.") {
             alert("Error en la actualización: " + data.message);
+
           } else {
             alert("Error en la actualización: " + data.message);
           }
         })
         .catch((error) => {
           console.error("Error en la solicitud Fetch: ", error);
+          alert('error en la actualizacion');
         });
     } else {
       alert("El Rut ingresado no es valido");
@@ -263,13 +266,13 @@ $(document).ready(function () {
       });
   });
 
-  var navLinks = $("nav-link");
+  var navLinks = document.getElementsByClassName("nav-link");
 
   for (var i = 0; i < navLinks.length; i++) {
-    navLinks[i].on("click", function (event) {
-      $("#resultadoBusqueda").style.display = "none";
-    });
-  }
+      navLinks[i].addEventListener("click", function (event) {
+          document.getElementById("resultadoBusqueda").style.display = 'none';
+      });
+  }
 
   // FRECUENCIA DE CENTRO DE TOMAS
 
@@ -305,13 +308,14 @@ $(document).ready(function () {
     $("#resultadoBusqueda").empty();
 
     var tableHTML =
+      '<h1 id="CountFrecuencia"></h1>'+
       '<table border="1" id="miTabla">' +
       "<tr>" +
       "<th>id</th>" +
       "<th>Paciente_id</th>" +
-      "<th>Diagnostico_codigo</th>" +
+      "<th>Diagnostico</th>" +
       "<th>Fecha</th>" +
-      "<th>Centro_codigo</th>" +
+      "<th>Codigo centro medico</th>" +
       "<th>Resultado</th>" +
       "<th>Fecha_entrega</th>" +
       "</tr>";
@@ -326,7 +330,7 @@ $(document).ready(function () {
         resultado.paciente_id +
         "</td>" +
         "<td>" +
-        resultado.diagnostico_codigo +
+        resultado.nombre_diagnostico +
         "</td>" +
         "<td>" +
         resultado.fecha +
@@ -346,7 +350,6 @@ $(document).ready(function () {
     tableHTML += '</table">';
 
     $("#resultadoBusqueda").append(tableHTML);
-
     var style = $(
       "<style>" +
         "table {" +
@@ -372,11 +375,15 @@ $(document).ready(function () {
         "   background-color: #337ab7;" +
         "   color:  #fff;" +
         "}" +
+        "#CountFrecuencia{"+
+        " color:#337ab7;"+
+        "}"+
         "</style>"
     );
 
     $("head").append(style);
     document.getElementById("resultadoBusqueda").style.display = "block";
+    $("#CountFrecuencia").text("Cantidad de Registros: " + data.resultados.length);
   }
 
   //EXPORTAR ARCHIVO
@@ -563,7 +570,7 @@ $(document).ready(function () {
       .then((data) => {
         if (data) {
           const select = $(
-            "#procedencia, #procedencia_actualizar, #codigo_actualizar"
+            "#procedencia, #procedencia_actualizar, #codigo_actualizar, #codigo_busqueda"
           );
           select.empty(); // clear antes de actualizar
           const optionSelect = $(
