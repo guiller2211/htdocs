@@ -17,6 +17,77 @@ class AdminDaoImpl implements AdminDao
         $this->db = new Database();
     }
 
+    public function getProcedencias()
+    {
+        $query = "SELECT * FROM CentroDeTomas";
+
+        $conn = $this->db->getConnection();
+        $stmt = mysqli_prepare($conn, $query);
+
+        if (!$stmt) {
+            $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
+            return false;
+        }
+
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+
+        mysqli_stmt_close($stmt);
+
+        return $result;
+    }
+
+    public function getPerfiles()
+    {
+        $query = "SELECT id, rut FROM Perfiles";
+
+        $conn = $this->db->getConnection();
+        $stmt = mysqli_prepare($conn, $query);
+
+        if (!$stmt) {
+            $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
+            return false;
+        }
+
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+
+        mysqli_stmt_close($stmt);
+
+        return $result;
+    }
+
+    public function getPerfil($id)
+    {
+        $query = "SELECT * FROM Perfiles WHERE id = $id";
+        $conn = $this->db->getConnection();
+        $stmt = mysqli_prepare($conn, $query);
+
+        if (!$stmt) {
+            $this->error->handlerErrorBBDD($stmt, "error en la busqueda");
+            return false;
+        }
+
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+
+        mysqli_stmt_close($stmt);
+
+        return $result;
+    }
+
     public function getDataAdmin()
     {
         $tableName = "perfiles";
@@ -101,7 +172,6 @@ class AdminDaoImpl implements AdminDao
     {
         $tableName = "perfiles";
         $rut = $admin->getRut();
-
         if ($this->verificarRut($rut)) {
             echo json_encode(['success' => false, 'message' => 'El código ya existe en la tabla.']);
             return false;

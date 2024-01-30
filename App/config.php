@@ -43,3 +43,4 @@ define('CONTROLLERS_PATH', __DIR__ . '/Controllers/');
 define('MODELS_PATH', __DIR__ . '/Models/');
 define('VIEWS_PATH', __DIR__ . '/Views/');
 define('APP_PATH', __DIR__ . '/');
+define('PUBLIC_PATH',  '/');
