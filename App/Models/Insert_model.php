@@ -33,7 +33,7 @@ class InsertDataBase
         )";
 
         $Create = mysqli_query($this->db->getConnection(), $buildTable);
-
+        $this->insertDefaultDataPerfiles($tableName);
         return true;
     }
 

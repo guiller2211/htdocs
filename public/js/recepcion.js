@@ -215,6 +215,7 @@ function mostrarResultBusqueda(data) {
     const tr = $("<tr>");
     tr.append(
       `
+      <td id="buscar"> ${row.id} </td>
       <td> ${row.rut} </td>
       <td> ${row.nombre} </td>
       <td> ${row.apPat} </td>
@@ -223,7 +224,7 @@ function mostrarResultBusqueda(data) {
       <td> ${row.centro_codigo} </td>
       <td> ${row.fecha} </td>
       <td>
-        <button class="btn btn-primary btn-sm">Ver Diagnostico</button>
+        <a class="crearPdf" data-id="${row.id}" class="btnBuscar">Crear PDF</a>
       </td>
       `
     );
@@ -253,5 +254,41 @@ $("#miAdmin").on("change", function (event) {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
+    });
+});
+
+
+
+//pdf
+$(".crearPdf").on("click", function (event) {
+  console.log("presiono enlace");
+  var buscar = $(this).data("id");
+  var formData = {
+    action: "generar_pdf",
+    buscar,
+    
+  };
+  console.log(formData);
+  fetch("recepcion/crearPdf", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.blob();
+    })
+    .then((blob) => {
+      // Crea un objeto URL para el blob
+      const blobUrl = URL.createObjectURL(blob);
+      // Redirige al usuario al URL del PDF generado
+      window.location.href = blobUrl;
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
     });
 });

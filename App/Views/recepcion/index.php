@@ -19,7 +19,6 @@
                         <input type="text" class="form-control" id="buscar" placeholder="Rut">
                         <select id="miAdmin"></select>
                         <div class="contieneTablaRe"> <!--aca quiero aterizar el resultado de la consulta id-->
-
                         </div>
                     </div>
                 </div>
@@ -32,6 +31,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th scope="col">ID</th>
                                     <th scope="col">rut</th>
                                     <th scope="col">nombre</th>
                                     <th scope="col">apPat</th>
@@ -46,6 +46,7 @@
                             <tbody id="recepDiag">
                                 <?php foreach ($data as $row) : ?>
                                     <tr>
+                                        <td id = "buscar"><?php echo $row['id']; ?></td>
                                         <td><?php echo $row['rut']; ?></td>
                                         <td><?php echo $row['nombre']; ?></td>
                                         <td><?php echo $row['apPat']; ?></td>
@@ -53,7 +54,8 @@
                                         <td><?php echo $row['telefono']; ?></td>
                                         <td><?php echo $row['centro_codigo']; ?></td>
                                         <td><?php echo $row['fecha']; ?></td>
-                                        <td><button class="btn btn-primary btn-sm">Ver Diagnostico</button></td>
+                                        <!--<td><button class="btn btn-primary btn-sm">Ver Diagnostico</button></td>-->
+                                        <td><a class="crearPdf" data-id="<?php echo $row['id']; ?>"class="btnBuscar">Crear PDF</a></td>
 
                                     </tr>
                                 <?php endforeach; ?>

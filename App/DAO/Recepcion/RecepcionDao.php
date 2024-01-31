@@ -8,4 +8,6 @@ interface RecepcionDao
     function getUsuarios();
     function insertUser(PacienteModel $admin);
     function insertExamen(ExamenModel $admin);
+    public function getDataPacienteById(pacienteModel $id);// busco examene de ese id
+
 }
