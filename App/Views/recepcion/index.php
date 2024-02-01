@@ -18,7 +18,6 @@
         <div class="user-section">
             <form id="formBuscar" class="form" method="post" style="text-align: center;">
                 <img src="../../../../public/img/logo.png" width="200" height="100" alt="">
-                <p style="text-align: center;">Mis Resultados</p>
                 <div class="input-container">
                     <input type="text" id="buscar" name="datos" placeholder="Ingrese el dato a buscar" required>
                     <span>
@@ -90,11 +89,6 @@
                     </table>
                 </div>
         </div>
-           
-            
-
-
-
 
 
         </div>

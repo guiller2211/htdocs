@@ -7,7 +7,6 @@ require_once __DIR__ . '/../Models/Examen_model.php';
 require_once __DIR__ . '/../Nodes/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
-
 class RecepcionController
 {
     public function index()

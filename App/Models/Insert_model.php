@@ -15,6 +15,21 @@ class InsertDataBase
         $this->db = new Database();
     }
 
+    public function eliminarTabla()
+    {
+        $tableName = "Perfiles";
+
+        $tableName = mysqli_real_escape_string($this->db->getConnection(), $tableName);
+    
+        $dropTableQuery = "DROP TABLE IF EXISTS $tableName";
+    
+        if(mysqli_query($this->db->getConnection(), $dropTableQuery)) {
+            return true; 
+        } else {
+            return false;
+        }
+    }
+    
 
     public function createPerfiles()
     {
