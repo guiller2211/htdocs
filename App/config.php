@@ -4,7 +4,8 @@
 define('DB_HOST', 'localhost');
 
 //define('DB_NAME', 'richardc_wp171');
-define('DB_NAME', 'bddrichardcalderon');
+//define('DB_NAME', 'luyanezc_lamuestrc');
+define('DB_NAME', 'diomarmr_lamuestrc');
 
 // Otras configuraciones
 define('APP_NAME', 'MiAplicacionMVC');
@@ -13,17 +14,22 @@ $ipServidor = $_SERVER['SERVER_ADDR'];
 // Define la constante BASE_URL según el entorno
 if ($ipServidor == '127.0.0.1' || $ipServidor == '::1') {
     // Entorno local
-    define('BASE_URL', 'http://localhost/');
+    define('BASE_URL', 'http://localhost/ipleones/labMuest/');
     define('DB_USER', 'root');
     define('DB_PASS', '');
 } else {
     // Otro entorno (por ejemplo, servidor de hosting)
-    define('BASE_URL', 'https://richardcc.cl/');
-    define('DB_USER', 'richardc_examen');
-    define('DB_PASS', 'nimda101112admin');
+    //define('BASE_URL', 'https://richardcc.cl/ipleones/labMuest/');
+    //define('DB_USER', 'richardc_examen');
+    //define('DB_PASS', 'nimda101112admin');
+    //define('DB_USER', 'luyanezc_usuario_RC');
+    
+    define('BASE_URL', 'https://diomarmr.cl/ipleones/labMuest/');
+    define('DB_USER', 'diomarmr_usuario_RC');
+    define('DB_PASS', 'RC_usuario');
 }
 
-define('HOME_URL', BASE_URL . '/');
+define('HOME_URL', BASE_URL . '');
 define('ADMIN_URL', BASE_URL . 'admin/');
 define('RECEPCION_DIAGNOSTICO_URL', BASE_URL . 'recepcion/');
 define('TINCION_URL', BASE_URL . 'tincion/');
