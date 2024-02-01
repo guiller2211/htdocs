@@ -20,7 +20,7 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
     public function getRegistroRecepcion()
     {
 
-        $query = "SELECT P.id, rut, nombre, apPat, apMat,telefono,E.centro_codigo, E.fecha
+        $query = "SELECT E.id, rut, nombre, apPat, apMat,telefono,E.centro_codigo, E.fecha
         FROM Pacientes AS P
         INNER JOIN Examenes AS E ON P.id = E.paciente_id
         where E.diagnostico_codigo IS NOT NULL;";
@@ -191,6 +191,8 @@ class RecepcionDaoImpl implements RecepcionDao // se implementa la interface de 
 
         return true;
     }
+
+    
     // prueba para crear pdf
     public function getDataPacienteById($buscar)
     {

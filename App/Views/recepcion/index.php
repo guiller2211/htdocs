@@ -1,9 +1,12 @@
 <head>
     <link rel="stylesheet" href="../../../../public/css/recepcion.css">
+    <link rel="stylesheet" href="../../../../public/css/user.css">
+    
+    
     <title>Recepci&oacute;n</title>
 </head>
 
-<div class="container-fluid">
+<div class="fondo">
     <div class="d-flex align-items-center justify-content-center flex-column">
         <h2 class="titulo-recep">Recepcion y Digitacion</h2>
         <nav class="nav-ok">
@@ -12,70 +15,96 @@
             <a class="enlace-nav" href="#" onclick="controlVisi3()">REGISTRAR PACIENTE</a>
         </nav>
         <div id="diagnostico" style="display:none">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center justify-content-center flex-column">
-                    <div class="form-group">
-                        <h3>Rut de Paciente</h3>
-                        <input type="text" class="form-control" id="buscar" placeholder="Rut">
-                        <select id="miAdmin"></select>
-                        <div class="contieneTablaRe"> <!--aca quiero aterizar el resultado de la consulta id-->
+        <div class="user-section">
+            <form id="formBuscar" class="form" method="post" style="text-align: center;">
+                <img src="../../../../public/img/logo.png" width="200" height="100" alt="">
+                <p style="text-align: center;">Mis Resultados</p>
+                <div class="input-container">
+                    <input type="text" id="buscar" name="datos" placeholder="Ingrese el dato a buscar" required>
+                    <span>
+                    </span>
+                </div>
+                <button type='submit' name="ingresar" class="btnBuscar">
+                    Buscar
+                </button>
+            </form>
+        </div>
+        <div class="tablaPaciente container" style="display:none;">
+            <a id="crearPdf" class="btnBuscar">Crear PDF</a>
+
+                <div class="container">
+                    <h1 class="text-center">Datos Paciente</h1>
+                    <div class="row">
+                        <div class="col-12">
+                            <table id="tablaPaciente">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Rut</th>
+                                        <th>Nombre</th>
+                                        <th>Paterno</th>
+                                        <th>Materno</th>
+                                        <th>Telefono</th>
+                                        <th>Dirección</th>
+                                        <th>Mail</th>
+                                        <th>FechaNacimiento</th>
+                                        <th>Genero</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyPaciente">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="container-fluid">
-                <h1 class="text-center">Lista de Exámenes Médicos</h1>
-                <div class="row">
-                    <div class="col-12">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">rut</th>
-                                    <th scope="col">nombre</th>
-                                    <th scope="col">apPat</th>
-                                    <th scope="col">apMat</th>
-                                    <th scope="col">telefono</th>
-                                    <th scope="col">Centro Medico</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Opci&oacute;n</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tbody id="recepDiag">
-                                <?php foreach ($data as $row) : ?>
-                                    <tr>
-                                        <td id = "buscar"><?php echo $row['id']; ?></td>
-                                        <td><?php echo $row['rut']; ?></td>
-                                        <td><?php echo $row['nombre']; ?></td>
-                                        <td><?php echo $row['apPat']; ?></td>
-                                        <td><?php echo $row['apMat']; ?></td>
-                                        <td><?php echo $row['telefono']; ?></td>
-                                        <td><?php echo $row['centro_codigo']; ?></td>
-                                        <td><?php echo $row['fecha']; ?></td>
-                                        <!--<td><button class="btn btn-primary btn-sm">Ver Diagnostico</button></td>-->
-                                        <td><a class="crearPdf" data-id="<?php echo $row['id']; ?>"class="btnBuscar">Crear PDF</a></td>
-
-                                    </tr>
-                                <?php endforeach; ?>
-
-                            </tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
+                <br>
+                <br>
+                <div class="tablaResultado container" style="display:none;">
+                    <table class="table table-bordered">
+                        <div class="container">
+                            <h1 class="text-center">Resultado</h1>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table id="tablaResultado">
+                                        <thead>
+                                            <tr>
+                                                <td> Centro Médico </td>
+                                                <td> Diagnostico Código </td>
+                                                <td> Resultado </td>
+                                                <td> Descripción </td>
+                                                <td> Fecha de Examén</td>
+                                                <td> Fecha de Tinción</td>
+                                                <td> Fecha de Diagnóstico </td>
+                                                <td> Fecha de Entrega </td>
+                                                <td>Días en proceso</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyResultado">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </table>
                 </div>
-            </div>
         </div>
+           
+            
 
+
+
+
+
+        </div>
         <!--REGISTRO EXAMEN-->
         <div id="ingreso" class="ver-ingreso">
             <?php include("complementos/registroExamen.php"); ?>
         </div>
 
         <!--INGRESAR PACIENTE-->
-        <div id="ingresarPaciente" class="ver-ingresos formulario" style="display:none">
+        <div id="ingresarPaciente" class="ver-ingreso" style="display:none">
             <?php include("complementos/ingresarUsuario.php"); ?>
         </div>
     </div>
