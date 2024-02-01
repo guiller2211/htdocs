@@ -49,9 +49,6 @@ class UserDaoImpl implements UserDao
         p2.procedencia = '$procedencia'
         AND p2.nivel = '$nivel'
         AND (P.rut = '$buscador' OR P.nombre LIKE '%$buscador%')";
-        
-
-
 
         $conn = $this->db->getConnection();
         $stmt = mysqli_prepare($conn, $query);

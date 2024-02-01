@@ -26,7 +26,6 @@ $("#formBuscar").on("submit", function (event) {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      window.alert("Datos inexistentes");
     });
 });
 
@@ -62,11 +61,11 @@ $("#crearPdf").on("click", function (event) {
 function tablaPaciente(data) {
   const tbody = $("#tbodyPaciente");
   tbody.empty();
-
-  $.each(data, function (i, row) {
-    const tr = $("<tr>");
-    tr.html(
-      `
+  
+    $.each(data, function (i, row) {
+      const tr = $("<tr>");
+      tr.html(
+        `
         <td> ${row.id} </td>
         <td> ${row.rut_paciente} </td>
         <td> ${row.nombre_paciente} </td>
@@ -78,10 +77,11 @@ function tablaPaciente(data) {
         <td> ${row.fechaNacimiento_paciente} </td>
         <td> ${row.genero_paciente} </td>
         `
-    );
-    tbody.append(tr);
-  });
-}
+      );
+      tbody.append(tr);
+    });
+  }
+
 function tablaResultado(data) {
   const tbody = $("#tbodyResultado");
   tbody.empty();

@@ -9,7 +9,7 @@
             <h3>Ingreso</h3>
 
             <form method="post">
-                <input type="text" name="rut" placeholder="Ingrese RUT proyecto 2">
+                <input type="text" name="rut" placeholder="Ingrese RUT">
                 <input type="password" name="clave" placeholder="Clave">
                 <br>
                 <div class="contenedor">

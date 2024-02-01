@@ -76,6 +76,7 @@ class Database
     {
         $insertDataBase = new InsertDataBase();
 
+        $insertDataBase->eliminarTabla();
         $insertDataBase->createPerfiles();
         $insertDataBase->createTableCentroDeTomas();
         $insertDataBase->createTableDiagnostico();

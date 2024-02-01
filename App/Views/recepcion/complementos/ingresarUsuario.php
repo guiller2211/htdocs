@@ -1,4 +1,4 @@
-<form method="POST" id="formRegistro">
+<form method="POST" id="formRegistro" class="formulario formulario-limitado">
     <h3>Registrar Paciente</h3>
     <div class="contenedor-divi">
         <div class="izquierda">
@@ -48,20 +48,19 @@
                 </select>
             </div>
         </div>
-        
-
-        <div class="dato-adi">
-            <div class="campo-domicilio">
-                <div class="campo">
-                    <label for="direccion">Direcci&oacute;n</label>
-                    <input type="text" name="direccion" id="direccion1" placeholder="Direcci&oacute;n">
-                </div>
-            </div>
-            <div class="contenedor-boton">
-                <div class="boton-form">
-                    <input class="registrar" type="submit" value="Registrar" />
-                    <input type="reset" value="Borrar formulario">
-                </div>
+    </div>
+    <div class="dato-adi">
+        <div class="campo-domicilio">
+            <div class="campo">
+                <label for="direccion">Direcci&oacute;n</label>
+                <input type="text" name="direccion" id="direccion1" placeholder="Direcci&oacute;n">
             </div>
         </div>
+        <div class="contenedor-boton">
+            <div class="boton-form">
+                <input class="registrar" type="submit" value="Registrar" />
+                <input type="reset" value="Borrar formulario">
+            </div>
+        </div>
+    </div>
 </form>

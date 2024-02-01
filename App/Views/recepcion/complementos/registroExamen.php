@@ -1,4 +1,4 @@
-<form method="POST" id="formExamen" class="formulario" >
+<form method="POST" id="formExamen" class="formulario formulario-limitado" >
     <h3>Registro de examen</h3>
     <div class="contenedor-divi">
         <div class="izquierda">
