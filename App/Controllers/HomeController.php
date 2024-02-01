@@ -8,7 +8,7 @@ class HomeController
 {
     public function index()
     {
-        $_SESSION['pagina_local'] = '/';
+        $_SESSION['pagina_local'] = '/ipleones/labMuest/';
 
         require_once VIEWS_PATH . 'layout/header.php';
 
@@ -17,7 +17,7 @@ class HomeController
         }
 
         $accessModel = new access_models();
-        $tableName = "CentroDeTomas";
+        $tableName = "Perfiles";
         $showCreateTableButton = $accessModel->tableExists($tableName);
         include VIEWS_PATH . 'home/index.php';
 
@@ -44,14 +44,15 @@ class HomeController
     private function logout()
     {
         session_destroy();
-         echo"<script language='javascript'>window.location='/'</script>;";
+         echo"<script language='javascript'>window.location='/ipleones/labMuest/'</script>;";
         exit();
     }
 
     private function createTable()
     {
         $accessModel = new access_models();
-        $accessModel->createTable();
+        $tableName = "CentroDeTomas";
+        $accessModel->createTable($tableName);
     }
 
     private function handleAuthentication()
@@ -64,7 +65,6 @@ class HomeController
 
         if ($isUserValid) {
             $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
-            $_SESSION['procedencia'] = $accessModel->getProcedencia();
             $this->checklevelPage($_SESSION['nivelUsuario']);
         } else {
             showErrorMessage("Usuario o contraseña incorrectos");

@@ -76,7 +76,6 @@ class Database
     {
         $insertDataBase = new InsertDataBase();
 
-        $insertDataBase->createPerfiles();
         $insertDataBase->createTableCentroDeTomas();
         $insertDataBase->createTableDiagnostico();
         $insertDataBase->createTablePacientes();
