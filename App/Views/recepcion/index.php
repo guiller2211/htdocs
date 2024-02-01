@@ -1,6 +1,6 @@
 <head>
-    <link rel="stylesheet" href="../../../../public/css/recepcion.css">
-    <link rel="stylesheet" href="../../../../public/css/user.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/recepcion.css">
+    <link rel="stylesheet" href="/ipleones/labMuest/public/css/user.css">
     
 
     <title>Recepci&oacute;n</title>
@@ -17,7 +17,7 @@
         <div id="diagnostico" style="display:none">
         <div class="user-section">
             <form id="formBuscar" class="form" method="post" style="text-align: center;">
-                <img src="../../../../public/img/logo.png" width="200" height="100" alt="">
+                <img src="/ipleones/labMuest/public/img/logo.png" width="200" height="100" alt="">
                 <div class="input-container">
                     <input type="text" id="buscar" name="datos" placeholder="Ingrese el dato a buscar" required>
                     <span>
