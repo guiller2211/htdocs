@@ -81,10 +81,7 @@ class AccesoClienteController
         $html = ob_get_clean();
         
         // para leer el contenido del archivo CSS especificado ('css/examen.css') y lo almacena en la variable CSS
-        $css = file_get_contents('css/examen.css');
-        
-        //Agrega los estilos CSS ($css) al contenido HTML ($html) utilizando la etiqueta <style>
-        $html = '<style>' . $css . '</style>' . $html;
+       
         
         //se crea una instancia de la clase donde se utiliza y renderiza el HTML aplicando los css y genra el PDF
         $dompdf = new Dompdf();
