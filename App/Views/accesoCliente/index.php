@@ -22,7 +22,7 @@
     </div>
     <br>
     <div class="tablaPaciente container" style="display:none;">
-    <a id="crearPdf" class="btnBuscar">Crear PDF</a>
+        <a id="crearPdf" class="btnBuscar">Crear PDF</a>
 
         <div class="container">
             <h1 class="text-center">Datos Paciente</h1>
@@ -88,3 +88,4 @@
 
 
 <script src="/ipleones/labMuest/public/js/usuario.js"></script>
+

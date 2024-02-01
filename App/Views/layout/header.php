@@ -65,7 +65,7 @@
 
             </div>
             <div class="col text-center">
-               <a class="nav-link" href="/"> <h1 class="title-lab">LABMUEST</h1>
+               <a class="nav-link" href="/ipleones/labMuest/"> <h1 class="title-lab">LABMUEST</h1>
                 <p class="sub-title-lab">Procesamiento de muestra</p>
                 </a>
             </div>

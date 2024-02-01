@@ -1,7 +1,6 @@
 <head>
     <link rel="stylesheet" href="/ipleones/labMuest/public/css/recepcion.css">
     <link rel="stylesheet" href="/ipleones/labMuest/public/css/user.css">
-    
 
     <title>Recepci&oacute;n</title>
 </head>
